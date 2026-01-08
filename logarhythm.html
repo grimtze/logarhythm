@@ -1,0 +1,1804 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Text Formatter</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Roboto, Arial, sans-serif;
+            background: #0d0d0d;
+            color: #e0e0e0;
+            min-height: 100vh;
+        }
+
+        .app-container {
+            display: flex;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        /* Left Panel - Editor */
+        .editor-panel {
+            width: 45%;
+            min-width: 400px;
+            background: #1a1a1a;
+            border-right: 1px solid #333;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        .panel-header {
+            padding: 16px 20px;
+            background: #222;
+            border-bottom: 1px solid #333;
+        }
+
+        .panel-header h2 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #fff;
+        }
+
+        .panel-content {
+            flex: 1;
+            overflow-y: auto;
+            padding: 16px;
+        }
+
+        /* Sections */
+        .section {
+            background: #222;
+            border-radius: 8px;
+            margin-bottom: 12px;
+            overflow: hidden;
+        }
+
+        .section-header {
+            padding: 12px 16px;
+            background: #2a2a2a;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            user-select: none;
+        }
+
+        .section-header:hover {
+            background: #333;
+        }
+
+        .section-header h3 {
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .section-header .toggle-icon {
+            transition: transform 0.2s;
+        }
+
+        .section-header.collapsed .toggle-icon {
+            transform: rotate(-90deg);
+        }
+
+        .section-content {
+            padding: 16px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .section-content.hidden {
+            display: none;
+        }
+
+        /* Buttons */
+        .btn-group {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 8px 16px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.85rem;
+            font-weight: 500;
+            transition: all 0.2s;
+        }
+
+        .btn-primary {
+            background: #4a9eff;
+            color: #fff;
+        }
+
+        .btn-primary:hover {
+            background: #3a8eef;
+        }
+
+        .btn-secondary {
+            background: #444;
+            color: #e0e0e0;
+        }
+
+        .btn-secondary:hover {
+            background: #555;
+        }
+
+        .btn-warning {
+            background: #ff9f43;
+            color: #000;
+        }
+
+        .btn-warning:hover {
+            background: #ffaf53;
+        }
+
+        .btn-danger {
+            background: #ff6b6b;
+            color: #fff;
+        }
+
+        .btn-danger:hover {
+            background: #ff5252;
+        }
+
+        .btn-success {
+            background: #51cf66;
+            color: #000;
+        }
+
+        .btn-success:hover {
+            background: #40bf55;
+        }
+
+        .btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .btn-small {
+            padding: 6px 12px;
+            font-size: 0.8rem;
+        }
+
+        /* Form Controls */
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .form-group label {
+            font-size: 0.8rem;
+            color: #aaa;
+        }
+
+        .form-row {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+        }
+
+        .form-row .form-group {
+            flex: 1;
+        }
+
+        input[type="text"],
+        input[type="number"],
+        select,
+        textarea {
+            background: #333;
+            border: 1px solid #444;
+            border-radius: 4px;
+            padding: 8px 12px;
+            color: #e0e0e0;
+            font-size: 0.85rem;
+            width: 100%;
+        }
+
+        input[type="text"]:focus,
+        input[type="number"]:focus,
+        select:focus,
+        textarea:focus {
+            outline: none;
+            border-color: #4a9eff;
+        }
+
+        input[type="color"] {
+            width: 40px;
+            height: 32px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            background: transparent;
+        }
+
+        .color-input-group {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .color-input-group input[type="text"] {
+            flex: 1;
+        }
+
+        /* Checkbox/Toggle */
+        .toggle-group {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .toggle {
+            position: relative;
+            width: 44px;
+            height: 24px;
+            background: #444;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .toggle.active {
+            background: #4a9eff;
+        }
+
+        .toggle::after {
+            content: '';
+            position: absolute;
+            top: 2px;
+            left: 2px;
+            width: 20px;
+            height: 20px;
+            background: #fff;
+            border-radius: 50%;
+            transition: transform 0.2s;
+        }
+
+        .toggle.active::after {
+            transform: translateX(20px);
+        }
+
+        .toggle-label {
+            font-size: 0.85rem;
+        }
+
+        /* Right Panel - Preview */
+        .preview-panel {
+            flex: 1;
+            background: #111;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        .preview-header {
+            padding: 16px 20px;
+            background: #1a1a1a;
+            border-bottom: 1px solid #333;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .preview-header h2 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #fff;
+        }
+
+        .preview-content {
+            flex: 1;
+            overflow-y: auto;
+            padding: 20px;
+        }
+
+        .preview-frame {
+            min-height: 200px;
+        }
+
+        /* Edit Mode */
+        .edit-textarea {
+            width: 100%;
+            height: 100%;
+            min-height: 400px;
+            background: #1a1a1a;
+            border: 1px solid #333;
+            border-radius: 8px;
+            padding: 16px;
+            color: #e0e0e0;
+            font-family: 'Consolas', 'Monaco', monospace;
+            font-size: 0.85rem;
+            line-height: 1.5;
+            resize: vertical;
+        }
+
+        /* Output Section */
+        .output-section {
+            border-top: 1px solid #333;
+            padding: 16px 20px;
+            background: #1a1a1a;
+        }
+
+        .output-textarea {
+            width: 100%;
+            height: 150px;
+            background: #222;
+            border: 1px solid #333;
+            border-radius: 8px;
+            padding: 12px;
+            color: #e0e0e0;
+            font-family: 'Consolas', 'Monaco', monospace;
+            font-size: 0.8rem;
+            resize: vertical;
+            margin-bottom: 12px;
+        }
+
+        /* Style Editor */
+        .style-property {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            padding: 8px;
+            background: #2a2a2a;
+            border-radius: 6px;
+        }
+
+        .style-property-label {
+            font-size: 0.75rem;
+            color: #888;
+            text-transform: uppercase;
+        }
+
+        .style-property-input {
+            display: flex;
+            gap: 8px;
+            align-items: center;
+        }
+
+        .style-property-input input,
+        .style-property-input select {
+            flex: 1;
+        }
+
+        .unit-select {
+            width: 60px !important;
+            flex: none !important;
+        }
+
+        /* Quote Color Mapping */
+        .quote-mapping {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 8px;
+            background: #2a2a2a;
+            border-radius: 6px;
+        }
+
+        .quote-mapping .color-preview {
+            width: 24px;
+            height: 24px;
+            border-radius: 4px;
+            border: 1px solid #444;
+        }
+
+        .quote-mapping select {
+            flex: 1;
+        }
+
+        .quote-mapping .btn {
+            flex: none;
+        }
+
+        /* Modal */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.7);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+        }
+
+        .modal-overlay.hidden {
+            display: none;
+        }
+
+        .modal {
+            background: #222;
+            border-radius: 12px;
+            padding: 24px;
+            max-width: 400px;
+            width: 90%;
+        }
+
+        .modal h3 {
+            margin-bottom: 16px;
+            font-size: 1.1rem;
+        }
+
+        .modal p {
+            margin-bottom: 20px;
+            color: #aaa;
+            font-size: 0.9rem;
+        }
+
+        .modal .btn-group {
+            justify-content: flex-end;
+        }
+
+        /* Details/Summary styling in preview */
+        .preview-frame details {
+            margin: 8px 0;
+        }
+
+        .preview-frame summary {
+            cursor: pointer;
+            padding: 8px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 4px;
+        }
+
+        /* Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #1a1a1a;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #444;
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #555;
+        }
+
+        /* Subsection for odd/even */
+        .subsection {
+            margin-top: 12px;
+            padding-top: 12px;
+            border-top: 1px dashed #444;
+        }
+
+        .subsection-title {
+            font-size: 0.8rem;
+            color: #888;
+            margin-bottom: 12px;
+            font-weight: 500;
+        }
+
+        /* Summary inputs for details mode */
+        .summary-input-group {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px;
+            background: #2a2a2a;
+            border-radius: 6px;
+            margin-bottom: 8px;
+        }
+
+        .summary-input-group label {
+            font-size: 0.8rem;
+            color: #aaa;
+            min-width: 80px;
+        }
+
+        .summary-input-group input {
+            flex: 1;
+        }
+
+        /* Header fields */
+        .header-fields {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .image-controls {
+            display: flex;
+            gap: 8px;
+            align-items: center;
+        }
+
+        .image-controls input[type="file"] {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="app-container">
+        <!-- Left Panel - Editor -->
+        <div class="editor-panel">
+            <div class="panel-header">
+                <h2>Editor</h2>
+            </div>
+            <div class="panel-content">
+                <!-- Paste/Add Section -->
+                <div class="section">
+                    <div class="section-header" onclick="toggleSection(this)">
+                        <h3>📋 Import Data</h3>
+                        <span class="toggle-icon">▼</span>
+                    </div>
+                    <div class="section-content">
+                        <div class="btn-group">
+                            <button class="btn btn-primary" onclick="handlePaste()">Paste</button>
+                            <button class="btn btn-secondary" onclick="handleAdd()" id="addBtn" disabled>Add</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Header Data Section -->
+                <div class="section">
+                    <div class="section-header" onclick="toggleSection(this)">
+                        <h3>📝 Header Data</h3>
+                        <span class="toggle-icon">▼</span>
+                    </div>
+                    <div class="section-content">
+                        <div class="header-fields">
+                            <div class="form-group">
+                                <label>Card Name</label>
+                                <input type="text" id="cardNameInput" placeholder="Character name..." oninput="updatePreview()">
+                            </div>
+                            <div class="form-group">
+                                <label>LLM Used</label>
+                                <input type="text" id="llmUsedInput" placeholder="Model name..." oninput="updatePreview()">
+                            </div>
+                            <div class="form-group">
+                                <label>Profile Image</label>
+                                <div class="image-controls">
+                                    <button class="btn btn-secondary btn-small" onclick="document.getElementById('imageUpload').click()">Upload</button>
+                                    <button class="btn btn-danger btn-small" onclick="removeImage()">Remove</button>
+                                    <input type="file" id="imageUpload" accept="image/*" onchange="handleImageUpload(event)">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Search & Replace Section -->
+                <div class="section">
+                    <div class="section-header" onclick="toggleSection(this)">
+                        <h3>🔍 Search & Replace</h3>
+                        <span class="toggle-icon">▼</span>
+                    </div>
+                    <div class="section-content">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Find</label>
+                                <input type="text" id="searchInput" placeholder="Text to find...">
+                            </div>
+                            <div class="form-group">
+                                <label>Replace with</label>
+                                <input type="text" id="replaceInput" placeholder="Replacement text...">
+                            </div>
+                        </div>
+                        <div class="btn-group">
+                            <button class="btn btn-warning" onclick="executeReplace()">Replace All</button>
+                            <button class="btn btn-secondary" onclick="undoReplace()" id="undoBtn" disabled>Undo</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Quote Color Mapping Section -->
+                <div class="section">
+                    <div class="section-header" onclick="toggleSection(this)">
+                        <h3>🎨 Quote Color Mapping</h3>
+                        <span class="toggle-icon">▼</span>
+                    </div>
+                    <div class="section-content" id="quoteColorMappings">
+                        <p style="font-size: 0.8rem; color: #888;">Detected quote colors will appear here after pasting content.</p>
+                    </div>
+                </div>
+
+                <!-- Details/Summary Section -->
+                <div class="section">
+                    <div class="section-header" onclick="toggleSection(this)">
+                        <h3>📂 Collapsible Sections</h3>
+                        <span class="toggle-icon">▼</span>
+                    </div>
+                    <div class="section-content">
+                        <div class="toggle-group">
+                            <div class="toggle" id="detailsToggle" onclick="toggleDetails()"></div>
+                            <span class="toggle-label">Wrap blocks in &lt;details&gt;</span>
+                        </div>
+                        <div id="summaryInputs" style="margin-top: 12px; display: none;">
+                            <!-- Summary inputs will be added dynamically -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Global Style Section -->
+                <div class="section">
+                    <div class="section-header" onclick="toggleSection(this)">
+                        <h3>🌐 Global Styles</h3>
+                        <span class="toggle-icon">▼</span>
+                    </div>
+                    <div class="section-content">
+                        <div class="form-group">
+                            <label>Font Family</label>
+                            <select id="globalFont" onchange="updatePreview()">
+                                <option value="'Segoe UI', Roboto, Arial, sans-serif">Segoe UI / Roboto</option>
+                                <option value="Arial, Helvetica, sans-serif">Arial</option>
+                                <option value="Georgia, 'Times New Roman', serif">Georgia</option>
+                                <option value="'Times New Roman', Times, serif">Times New Roman</option>
+                                <option value="'Courier New', Courier, monospace">Courier New</option>
+                                <option value="Verdana, Geneva, sans-serif">Verdana</option>
+                                <option value="Tahoma, Geneva, sans-serif">Tahoma</option>
+                                <option value="'Trebuchet MS', Helvetica, sans-serif">Trebuchet MS</option>
+                                <option value="Impact, Charcoal, sans-serif">Impact</option>
+                                <option value="'Comic Sans MS', cursive">Comic Sans MS</option>
+                            </select>
+                        </div>
+                        <div class="toggle-group">
+                            <div class="toggle" id="oddEvenToggle" onclick="toggleOddEven()"></div>
+                            <span class="toggle-label">Split Odd/Even Block Styles</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Style Sections - Generated dynamically -->
+                <div id="styleEditors"></div>
+
+                <!-- Presets Section -->
+                <div class="section">
+                    <div class="section-header" onclick="toggleSection(this)">
+                        <h3>💾 Presets</h3>
+                        <span class="toggle-icon">▼</span>
+                    </div>
+                    <div class="section-content">
+                        <div class="form-group">
+                            <label>Load Preset</label>
+                            <select id="presetSelect" onchange="loadPreset()">
+                                <option value="">-- Select Preset --</option>
+                                <option value="dark">Dark Theme (Default)</option>
+                                <option value="light">Light Theme</option>
+                            </select>
+                        </div>
+                        <div class="btn-group">
+                            <button class="btn btn-secondary" onclick="downloadPreset()">Download Current</button>
+                            <button class="btn btn-secondary" onclick="document.getElementById('presetUpload').click()">Upload Preset</button>
+                            <input type="file" id="presetUpload" accept=".json" style="display: none;" onchange="uploadPreset(event)">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Right Panel - Preview -->
+        <div class="preview-panel">
+            <div class="preview-header">
+                <h2 id="previewTitle">Preview</h2>
+                <div class="btn-group">
+                    <button class="btn btn-secondary" id="editBtn" onclick="toggleEditMode()">Edit HTML</button>
+                </div>
+            </div>
+            <div class="preview-content">
+                <div class="preview-frame" id="previewFrame">
+                    <p style="color: #666; text-align: center; padding: 40px;">Paste content to see preview</p>
+                </div>
+                <textarea class="edit-textarea hidden" id="editTextarea" oninput="updateFromEdit()"></textarea>
+            </div>
+            <div class="output-section">
+                <button class="btn btn-success" onclick="generateOutput()" style="margin-bottom: 12px;">Generate Output</button>
+                <textarea class="output-textarea" id="outputTextarea" readonly placeholder="Click 'Generate Output' to see the final HTML..."></textarea>
+                <div class="btn-group">
+                    <button class="btn btn-primary" onclick="copyOutput()">Copy to Clipboard</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Confirmation Modal -->
+    <div class="modal-overlay hidden" id="confirmModal">
+        <div class="modal">
+            <h3>⚠️ Overwrite Data?</h3>
+            <p>You already have content. Pasting will replace all existing data. Continue?</p>
+            <div class="btn-group">
+                <button class="btn btn-secondary" onclick="closeModal()">Cancel</button>
+                <button class="btn btn-danger" onclick="confirmPaste()">Overwrite</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // ============================================
+        // STATE MANAGEMENT
+        // ============================================
+        
+        const state = {
+            midProcessData: null,
+            textBlocks: [],
+            cardName: '',
+            llmUsed: '',
+            imageData: '',
+            hasContent: false,
+            isEditMode: false,
+            isOddEvenMode: false,
+            isDetailsMode: false,
+            summaryTexts: [],
+            quoteColorMap: {},
+            detectedColors: new Set(),
+            searchReplaceBackup: null,
+            styles: {}
+        };
+
+        // ============================================
+        // STYLE DEFINITIONS
+        // ============================================
+
+        const styleDefinitions = {
+            output_container_style: {
+                label: 'Container',
+                properties: {
+                    background: { type: 'color', default: '#000000' },
+                    border: { type: 'border', default: { width: '0', style: 'solid', color: '#4b5563' } },
+                    'border-radius': { type: 'size', default: '12px' },
+                    padding: { type: 'size', default: '20px' },
+                    margin: { type: 'size', default: '1rem auto' },
+                    'max-width': { type: 'size', default: '600px' },
+                    'box-shadow': { type: 'text', default: '0px 4px 12px rgba(0,0,0,0.15)' }
+                }
+            },
+            output_header_style: {
+                label: 'Header',
+                properties: {
+                    background: { type: 'color', default: 'transparent' },
+                    padding: { type: 'size', default: '0' },
+                    margin: { type: 'size', default: '0 0 1rem 0' },
+                    'text-align': { type: 'select', options: ['left', 'center', 'right'], default: 'center' },
+                    'flex-direction': { type: 'select', options: ['row', 'column'], default: 'column' }
+                }
+            },
+            output_image_style: {
+                label: 'Profile Image',
+                properties: {
+                    width: { type: 'size', default: '80px' },
+                    height: { type: 'size', default: '80px' },
+                    'border-radius': { type: 'size', default: '50%' },
+                    border: { type: 'border', default: { width: '3px', style: 'solid', color: '#4b5563' } },
+                    'background-size': { type: 'select', options: ['cover', 'contain', 'auto'], default: 'cover' },
+                    'background-position': { type: 'text', default: 'center' },
+                    'background-repeat': { type: 'select', options: ['no-repeat', 'repeat', 'repeat-x', 'repeat-y'], default: 'no-repeat' }
+                }
+            },
+            output_card_name_style: {
+                label: 'Card Name',
+                properties: {
+                    color: { type: 'color', default: '#f8f8f2' },
+                    'font-size': { type: 'size', default: '1.5rem' },
+                    'font-weight': { type: 'select', options: ['400', '500', '600', '700'], default: '600' }
+                }
+            },
+            output_llm_used_style: {
+                label: 'LLM Badge',
+                properties: {
+                    background: { type: 'color', default: '#000000' },
+                    color: { type: 'color', default: '#f8f8f2' },
+                    border: { type: 'border', default: { width: '1px', style: 'solid', color: '#4b5563' } },
+                    'border-radius': { type: 'size', default: '16px' },
+                    padding: { type: 'size', default: '0.25rem 0.75rem' },
+                    'font-size': { type: 'size', default: '0.8rem' }
+                }
+            },
+            output_text_container_style: {
+                label: 'Text Container',
+                properties: {
+                    border: { type: 'border', default: { width: '1px 0 0 0', style: 'solid', color: '#4b5563' } },
+                    padding: { type: 'size', default: '1rem 0 0 0' },
+                    margin: { type: 'size', default: '0' }
+                }
+            },
+            output_text_block_style: {
+                label: 'Text Block',
+                isOddEven: true,
+                properties: {
+                    background: { type: 'color', default: 'transparent' },
+                    border: { type: 'border', default: { width: '0', style: 'solid', color: '#4b5563' } },
+                    'border-radius': { type: 'size', default: '0' },
+                    padding: { type: 'size', default: '0' },
+                    margin: { type: 'size', default: '0 0 1rem 0' }
+                }
+            },
+            output_text_paragraph_style: {
+                label: 'Paragraph',
+                isOddEven: true,
+                properties: {
+                    color: { type: 'color', default: '#f8f8f2' },
+                    'font-size': { type: 'size', default: '1rem' },
+                    'line-height': { type: 'text', default: '1.6' }
+                }
+            },
+            output_text_smallquote_style: {
+                label: 'Small Quote',
+                isOddEven: true,
+                properties: {
+                    color: { type: 'color', default: '#8BE9FD' },
+                    background: { type: 'color', default: 'transparent' },
+                    'font-style': { type: 'select', options: ['normal', 'italic'], default: 'normal' },
+                    padding: { type: 'size', default: '0' }
+                }
+            },
+            output_text_bigquote_style: {
+                label: 'Big Quote',
+                isOddEven: true,
+                properties: {
+                    color: { type: 'color', default: '#FFB86C' },
+                    background: { type: 'color', default: 'transparent' },
+                    'font-style': { type: 'select', options: ['normal', 'italic'], default: 'normal' },
+                    padding: { type: 'size', default: '0' }
+                }
+            },
+            output_footer_style: {
+                label: 'Footer',
+                properties: {
+                    border: { type: 'border', default: { width: '1px 0 0 0', style: 'solid', color: '#4b5563' } },
+                    padding: { type: 'size', default: '0.75rem 0 0 0' },
+                    'text-align': { type: 'select', options: ['left', 'center', 'right'], default: 'center' }
+                }
+            },
+            output_footer_text_style: {
+                label: 'Footer Text',
+                properties: {
+                    color: { type: 'color', default: '#64748b' },
+                    'font-size': { type: 'size', default: '0.75rem' },
+                    opacity: { type: 'text', default: '0.7' }
+                }
+            }
+        };
+
+        // Initialize styles from definitions
+        function initializeStyles() {
+            for (const [className, def] of Object.entries(styleDefinitions)) {
+                state.styles[className] = {};
+                for (const [prop, config] of Object.entries(def.properties)) {
+                    if (config.type === 'border') {
+                        state.styles[className][prop] = `${config.default.width} ${config.default.style} ${config.default.color}`;
+                    } else {
+                        state.styles[className][prop] = config.default;
+                    }
+                }
+                
+                // Initialize odd/even variants
+                if (def.isOddEven) {
+                    state.styles[className + '_odd'] = { ...state.styles[className] };
+                    state.styles[className + '_even'] = { ...state.styles[className] };
+                }
+            }
+        }
+
+        // ============================================
+        // PRESETS
+        // ============================================
+
+        const presets = {
+            dark: {
+                output_container_style: {
+                    background: '#000000',
+                    border: '0 solid #4b5563',
+                    'border-radius': '12px',
+                    padding: '20px',
+                    margin: '1rem auto',
+                    'max-width': '600px',
+                    'box-shadow': '0px 4px 12px rgba(0,0,0,0.15)'
+                },
+                output_header_style: {
+                    background: 'transparent',
+                    padding: '0',
+                    margin: '0 0 1rem 0',
+                    'text-align': 'center',
+                    'flex-direction': 'column'
+                },
+                output_image_style: {
+                    width: '80px',
+                    height: '80px',
+                    'border-radius': '50%',
+                    border: '3px solid #4b5563',
+                    'background-size': 'cover',
+                    'background-position': 'center',
+                    'background-repeat': 'no-repeat'
+                },
+                output_card_name_style: {
+                    color: '#f8f8f2',
+                    'font-size': '1.5rem',
+                    'font-weight': '600'
+                },
+                output_llm_used_style: {
+                    background: '#000000',
+                    color: '#f8f8f2',
+                    border: '1px solid #4b5563',
+                    'border-radius': '16px',
+                    padding: '0.25rem 0.75rem',
+                    'font-size': '0.8rem'
+                },
+                output_text_container_style: {
+                    border: '1px solid #4b5563',
+                    padding: '1rem 0 0 0',
+                    margin: '0'
+                },
+                output_text_block_style: {
+                    background: 'transparent',
+                    border: '0 solid #4b5563',
+                    'border-radius': '0',
+                    padding: '0',
+                    margin: '0 0 1rem 0'
+                },
+                output_text_paragraph_style: {
+                    color: '#f8f8f2',
+                    'font-size': '1rem',
+                    'line-height': '1.6'
+                },
+                output_text_smallquote_style: {
+                    color: '#8BE9FD',
+                    background: 'transparent',
+                    'font-style': 'normal',
+                    padding: '0'
+                },
+                output_text_bigquote_style: {
+                    color: '#FFB86C',
+                    background: 'transparent',
+                    'font-style': 'normal',
+                    padding: '0'
+                },
+                output_footer_style: {
+                    border: '1px solid #4b5563',
+                    padding: '0.75rem 0 0 0',
+                    'text-align': 'center'
+                },
+                output_footer_text_style: {
+                    color: '#64748b',
+                    'font-size': '0.75rem',
+                    opacity: '0.7'
+                }
+            },
+            light: {
+                output_container_style: {
+                    background: '#ffffff',
+                    border: '1px solid #e0e0e0',
+                    'border-radius': '12px',
+                    padding: '20px',
+                    margin: '1rem auto',
+                    'max-width': '600px',
+                    'box-shadow': '0px 4px 12px rgba(0,0,0,0.08)'
+                },
+                output_header_style: {
+                    background: 'transparent',
+                    padding: '0',
+                    margin: '0 0 1rem 0',
+                    'text-align': 'center',
+                    'flex-direction': 'column'
+                },
+                output_image_style: {
+                    width: '80px',
+                    height: '80px',
+                    'border-radius': '50%',
+                    border: '3px solid #d0d0d0',
+                    'background-size': 'cover',
+                    'background-position': 'center',
+                    'background-repeat': 'no-repeat'
+                },
+                output_card_name_style: {
+                    color: '#1a1a1a',
+                    'font-size': '1.5rem',
+                    'font-weight': '600'
+                },
+                output_llm_used_style: {
+                    background: '#f5f5f5',
+                    color: '#333333',
+                    border: '1px solid #d0d0d0',
+                    'border-radius': '16px',
+                    padding: '0.25rem 0.75rem',
+                    'font-size': '0.8rem'
+                },
+                output_text_container_style: {
+                    border: '1px solid #e0e0e0',
+                    padding: '1rem 0 0 0',
+                    margin: '0'
+                },
+                output_text_block_style: {
+                    background: 'transparent',
+                    border: '0 solid #e0e0e0',
+                    'border-radius': '0',
+                    padding: '0',
+                    margin: '0 0 1rem 0'
+                },
+                output_text_paragraph_style: {
+                    color: '#1a1a1a',
+                    'font-size': '1rem',
+                    'line-height': '1.6'
+                },
+                output_text_smallquote_style: {
+                    color: '#0891b2',
+                    background: 'transparent',
+                    'font-style': 'normal',
+                    padding: '0'
+                },
+                output_text_bigquote_style: {
+                    color: '#d97706',
+                    background: 'transparent',
+                    'font-style': 'normal',
+                    padding: '0'
+                },
+                output_footer_style: {
+                    border: '1px solid #e0e0e0',
+                    padding: '0.75rem 0 0 0',
+                    'text-align': 'center'
+                },
+                output_footer_text_style: {
+                    color: '#6b7280',
+                    'font-size': '0.75rem',
+                    opacity: '0.7'
+                }
+            }
+        };
+
+        // ============================================
+        // UI HELPERS
+        // ============================================
+
+        function toggleSection(header) {
+            header.classList.toggle('collapsed');
+            const content = header.nextElementSibling;
+            content.classList.toggle('hidden');
+        }
+
+        function closeModal() {
+            document.getElementById('confirmModal').classList.add('hidden');
+        }
+
+        // ============================================
+        // PASTE & ADD HANDLING
+        // ============================================
+
+        async function handlePaste() {
+            if (state.hasContent) {
+                document.getElementById('confirmModal').classList.remove('hidden');
+                return;
+            }
+            await executePaste();
+        }
+
+        async function confirmPaste() {
+            closeModal();
+            await executePaste();
+        }
+
+        async function executePaste() {
+            try {
+                const text = await navigator.clipboard.readText();
+                const parsed = parseInputHTML(text);
+                
+                if (parsed) {
+                    state.textBlocks = [parsed.textContent];
+                    state.cardName = parsed.cardName;
+                    state.llmUsed = parsed.llmUsed;
+                    state.imageData = parsed.imageData;
+                    state.hasContent = true;
+                    state.summaryTexts = ['Section 1'];
+                    
+                    // Update UI
+                    document.getElementById('cardNameInput').value = state.cardName;
+                    document.getElementById('llmUsedInput').value = state.llmUsed;
+                    document.getElementById('addBtn').disabled = false;
+                    
+                    // Update quote color mappings
+                    updateQuoteColorMappings();
+                    updateSummaryInputs();
+                    updatePreview();
+                }
+            } catch (err) {
+                console.error('Failed to read clipboard:', err);
+                alert('Failed to read clipboard. Please make sure you have copied HTML content.');
+            }
+        }
+
+        async function handleAdd() {
+            if (!state.hasContent) return;
+            
+            try {
+                const text = await navigator.clipboard.readText();
+                const parsed = parseInputHTML(text);
+                
+                if (parsed) {
+                    state.textBlocks.push(parsed.textContent);
+                    state.summaryTexts.push(`Section ${state.textBlocks.length}`);
+                    
+                    // Merge any new colors
+                    updateQuoteColorMappings();
+                    updateSummaryInputs();
+                    updatePreview();
+                }
+            } catch (err) {
+                console.error('Failed to read clipboard:', err);
+                alert('Failed to read clipboard.');
+            }
+        }
+
+        // ============================================
+        // HTML PARSING
+        // ============================================
+
+        function parseInputHTML(html) {
+            const parser = new DOMParser();
+            const doc = parser.parseFromString(html, 'text/html');
+            
+            // Find the main container
+            const container = doc.querySelector('div[style*="font-family"]') || doc.querySelector('div');
+            if (!container) return null;
+            
+            // Extract card name
+            const cardNameEl = container.querySelector('h3');
+            const cardName = cardNameEl ? cardNameEl.textContent.trim() : '';
+            
+            // Extract LLM used
+            const llmBadge = container.querySelector('span[style*="border-radius: 16px"]') || 
+                            container.querySelector('span[style*="inline-block"]');
+            const llmUsed = llmBadge ? llmBadge.textContent.trim() : '';
+            
+            // Extract image
+            const imgEl = container.querySelector('img');
+            const imageData = imgEl ? imgEl.src : '';
+            
+            // Extract text content
+            const textContainer = container.querySelector('div[style*="border-top"]');
+            const textContent = parseTextContent(textContainer || container);
+            
+            return { cardName, llmUsed, imageData, textContent };
+        }
+
+        function parseTextContent(container) {
+            if (!container) return [];
+            
+            const elements = [];
+            const children = container.children;
+            
+            for (let i = 0; i < children.length; i++) {
+                const child = children[i];
+                const tagName = child.tagName.toLowerCase();
+                
+                if (tagName === 'p') {
+                    const text = child.textContent.trim();
+                    if (text) {
+                        elements.push({ type: 'paragraph', content: text });
+                    }
+                } else if (tagName === 'div') {
+                    const style = child.getAttribute('style') || '';
+                    const colorMatch = style.match(/color:\s*(#[a-fA-F0-9]{6}|#[a-fA-F0-9]{3}|[a-zA-Z]+)/i);
+                    
+                    if (colorMatch) {
+                        const color = colorMatch[1].toUpperCase();
+                        state.detectedColors.add(color);
+                        
+                        // Default mapping
+                        if (!state.quoteColorMap[color]) {
+                            if (color === '#8BE9FD') {
+                                state.quoteColorMap[color] = 'smallquote';
+                            } else if (color === '#FFB86C') {
+                                state.quoteColorMap[color] = 'bigquote';
+                            } else {
+                                state.quoteColorMap[color] = 'smallquote';
+                            }
+                        }
+                        
+                        elements.push({ 
+                            type: 'quote', 
+                            quoteType: state.quoteColorMap[color],
+                            originalColor: color,
+                            content: child.textContent.trim() 
+                        });
+                    }
+                }
+            }
+            
+            return elements;
+        }
+
+        function updateQuoteColorMappings() {
+            const container = document.getElementById('quoteColorMappings');
+            
+            if (state.detectedColors.size === 0) {
+                container.innerHTML = '<p style="font-size: 0.8rem; color: #888;">No quote colors detected yet.</p>';
+                return;
+            }
+            
+            container.innerHTML = '';
+            
+            for (const color of state.detectedColors) {
+                const mapping = document.createElement('div');
+                mapping.className = 'quote-mapping';
+                mapping.innerHTML = `
+                    <div class="color-preview" style="background: ${color};"></div>
+                    <span style="font-size: 0.8rem; font-family: monospace;">${color}</span>
+                    <select onchange="updateQuoteMapping('${color}', this.value)">
+                        <option value="smallquote" ${state.quoteColorMap[color] === 'smallquote' ? 'selected' : ''}>Small Quote</option>
+                        <option value="bigquote" ${state.quoteColorMap[color] === 'bigquote' ? 'selected' : ''}>Big Quote</option>
+                        <option value="ignore" ${state.quoteColorMap[color] === 'ignore' ? 'selected' : ''}>Ignore (as paragraph)</option>
+                    </select>
+                `;
+                container.appendChild(mapping);
+            }
+        }
+
+        function updateQuoteMapping(color, type) {
+            state.quoteColorMap[color] = type;
+            
+            // Re-parse all text blocks to apply new mapping
+            for (let i = 0; i < state.textBlocks.length; i++) {
+                for (let j = 0; j < state.textBlocks[i].length; j++) {
+                    const element = state.textBlocks[i][j];
+                    if (element.type === 'quote' && element.originalColor === color) {
+                        element.quoteType = type === 'ignore' ? 'paragraph' : type;
+                        if (type === 'ignore') {
+                            element.type = 'paragraph';
+                        }
+                    }
+                }
+            }
+            
+            updatePreview();
+        }
+
+        // ============================================
+        // SEARCH & REPLACE
+        // ============================================
+
+        function executeRe place() {
+            const searchText = document.getElementById('searchInput').value;
+            const replaceText = document.getElementById('replaceInput').value;
+            
+            if (!searchText) return;
+            
+            // Backup for undo
+            state.searchReplaceBackup = JSON.parse(JSON.stringify(state.textBlocks));
+            
+            // Perform replacement
+            for (let i = 0; i < state.textBlocks.length; i++) {
+                for (let j = 0; j < state.textBlocks[i].length; j++) {
+                    state.textBlocks[i][j].content = state.textBlocks[i][j].content
+                        .split(searchText).join(replaceText);
+                }
+            }
+            
+            // Also replace in card name
+            state.cardName = state.cardName.split(searchText).join(replaceText);
+            document.getElementById('cardNameInput').value = state.cardName;
+            
+            document.getElementById('undoBtn').disabled = false;
+            updatePreview();
+        }
+
+        function undoReplace() {
+            if (state.searchReplaceBackup) {
+                state.textBlocks = state.searchReplaceBackup;
+                state.searchReplaceBackup = null;
+                document.getElementById('undoBtn').disabled = true;
+                updatePreview();
+            }
+        }
+
+        // ============================================
+        // STYLE EDITOR GENERATION
+        // ============================================
+
+        function generateStyleEditors() {
+            const container = document.getElementById('styleEditors');
+            container.innerHTML = '';
+            
+            for (const [className, def] of Object.entries(styleDefinitions)) {
+                const section = createStyleSection(className, def, false);
+                container.appendChild(section);
+                
+                // Add odd/even sections if applicable
+                if (def.isOddEven && state.isOddEvenMode) {
+                    const evenSection = createStyleSection(className + '_even', { 
+                        ...def, 
+                        label: def.label + ' (Even)' 
+                    }, true);
+                    evenSection.id = `section_${className}_even`;
+                    container.appendChild(evenSection);
+                }
+            }
+        }
+
+        function createStyleSection(className, def, isEvenSection) {
+            const section = document.createElement('div');
+            section.className = 'section';
+            section.id = `section_${className}`;
+            
+            const labelSuffix = def.isOddEven && state.isOddEvenMode && !isEvenSection ? ' (Odd)' : '';
+            
+            section.innerHTML = `
+                <div class="section-header" onclick="toggleSection(this)">
+                    <h3>🎨 ${def.label}${labelSuffix}</h3>
+                    <span class="toggle-icon">▼</span>
+                </div>
+                <div class="section-content">
+                    ${generatePropertyInputs(className, def.properties)}
+                </div>
+            `;
+            
+            return section;
+        }
+
+        function generatePropertyInputs(className, properties) {
+            let html = '';
+            
+            for (const [prop, config] of Object.entries(properties)) {
+                const value = state.styles[className]?.[prop] || config.default;
+                
+                html += `<div class="style-property">
+                    <span class="style-property-label">${prop}</span>
+                    <div class="style-property-input">`;
+                
+                switch (config.type) {
+                    case 'color':
+                        html += `
+                            <input type="color" value="${value}" onchange="updateStyle('${className}', '${prop}', this.value)">
+                            <input type="text" value="${value}" onchange="updateStyle('${className}', '${prop}', this.value)">
+                        `;
+                        break;
+                    case 'size':
+                        html += `
+                            <input type="text" value="${value}" onchange="updateStyle('${className}', '${prop}', this.value)">
+                        `;
+                        break;
+                    case 'text':
+                        html += `
+                            <input type="text" value="${value}" onchange="updateStyle('${className}', '${prop}', this.value)">
+                        `;
+                        break;
+                    case 'select':
+                        html += `<select onchange="updateStyle('${className}', '${prop}', this.value)">`;
+                        for (const opt of config.options) {
+                            const selected = value === opt ? 'selected' : '';
+                            html += `<option value="${opt}" ${selected}>${opt}</option>`;
+                        }
+                        html += `</select>`;
+                        break;
+                    case 'border':
+                        const borderParts = parseBorder(value);
+                        html += `
+                            <input type="text" value="${borderParts.width}" placeholder="width" style="width: 60px;" 
+                                onchange="updateBorderStyle('${className}', '${prop}', 'width', this.value)">
+                            <select onchange="updateBorderStyle('${className}', '${prop}', 'style', this.value)">
+                                <option value="solid" ${borderParts.style === 'solid' ? 'selected' : ''}>solid</option>
+                                <option value="dashed" ${borderParts.style === 'dashed' ? 'selected' : ''}>dashed</option>
+                                <option value="dotted" ${borderParts.style === 'dotted' ? 'selected' : ''}>dotted</option>
+                                <option value="none" ${borderParts.style === 'none' ? 'selected' : ''}>none</option>
+                            </select>
+                            <input type="color" value="${borderParts.color}" 
+                                onchange="updateBorderStyle('${className}', '${prop}', 'color', this.value)">
+                        `;
+                        break;
+                }
+                
+                html += `</div></div>`;
+            }
+            
+            return html;
+        }
+
+        function parseBorder(borderStr) {
+            const parts = borderStr.split(' ');
+            return {
+                width: parts[0] || '0',
+                style: parts[1] || 'solid',
+                color: parts[2] || '#000000'
+            };
+        }
+
+        function updateStyle(className, property, value) {
+            if (!state.styles[className]) {
+                state.styles[className] = {};
+            }
+            state.styles[className][property] = value;
+            updatePreview();
+        }
+
+        function updateBorderStyle(className, property, part, value) {
+            if (!state.styles[className]) {
+                state.styles[className] = {};
+            }
+            
+            const current = parseBorder(state.styles[className][property] || '0 solid #000000');
+            current[part] = value;
+            state.styles[className][property] = `${current.width} ${current.style} ${current.color}`;
+            updatePreview();
+        }
+
+        // ============================================
+        // ODD/EVEN MODE
+        // ============================================
+
+        function toggleOddEven() {
+            const toggle = document.getElementById('oddEvenToggle');
+            toggle.classList.toggle('active');
+            state.isOddEvenMode = toggle.classList.contains('active');
+            generateStyleEditors();
+            updatePreview();
+        }
+
+        // ============================================
+        // DETAILS MODE
+        // ============================================
+
+        function toggleDetails() {
+            const toggle = document.getElementById('detailsToggle');
+            toggle.classList.toggle('active');
+            state.isDetailsMode = toggle.classList.contains('active');
+            
+            const summaryInputs = document.getElementById('summaryInputs');
+            summaryInputs.style.display = state.isDetailsMode ? 'block' : 'none';
+            
+            updateSummaryInputs();
+            updatePreview();
+        }
+
+        function updateSummaryInputs() {
+            const container = document.getElementById('summaryInputs');
+            container.innerHTML = '';
+            
+            if (!state.isDetailsMode) return;
+            
+            for (let i = 0; i < state.textBlocks.length; i++) {
+                const div = document.createElement('div');
+                div.className = 'summary-input-group';
+                div.innerHTML = `
+                    <label>Block ${i + 1}:</label>
+                    <input type="text" value="${state.summaryTexts[i] || `Section ${i + 1}`}" 
+                        onchange="updateSummaryText(${i}, this.value)">
+                `;
+                container.appendChild(div);
+            }
+        }
+
+        function updateSummaryText(index, value) {
+            state.summaryTexts[index] = value;
+            updatePreview();
+        }
+
+        // ============================================
+        // IMAGE HANDLING
+        // ============================================
+
+        function handleImageUpload(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+            
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                state.imageData = e.target.result;
+                updatePreview();
+            };
+            reader.readAsDataURL(file);
+        }
+
+        function removeImage() {
+            state.imageData = '';
+            updatePreview();
+        }
+
+        // ============================================
+        // PREVIEW GENERATION
+        // ============================================
+
+        function updatePreview() {
+            // Update state from inputs
+            state.cardName = document.getElementById('cardNameInput').value;
+            state.llmUsed = document.getElementById('llmUsedInput').value;
+            
+            if (!state.hasContent && state.textBlocks.length === 0) {
+                document.getElementById('previewFrame').innerHTML = 
+                    '<p style="color: #666; text-align: center; padding: 40px;">Paste content to see preview</p>';
+                return;
+            }
+            
+            const html = generatePreviewHTML();
+            
+            if (state.isEditMode) {
+                document.getElementById('editTextarea').value = html;
+            } else {
+                document.getElementById('previewFrame').innerHTML = html;
+            }
+        }
+
+        function generatePreviewHTML() {
+            const globalFont = document.getElementById('globalFont').value;
+            
+            const containerStyle = generateInlineStyle('output_container_style', { 'font-family': globalFont });
+            const headerStyle = generateInlineStyle('output_header_style', { display: 'flex', 'align-items': 'center' });
+            const imageStyle = generateInlineStyle('output_image_style', { 'background-image': state.imageData ? `url(${state.imageData})` : 'none' });
+            const cardNameStyle = generateInlineStyle('output_card_name_style', { margin: '0.75rem 0 0.5rem 0' });
+            const llmStyle = generateInlineStyle('output_llm_used_style', { display: 'inline-block' });
+            const textContainerStyle = generateInlineStyle('output_text_container_style');
+            const footerStyle = generateInlineStyle('output_footer_style', { 'margin-top': '1rem' });
+            const footerTextStyle = generateInlineStyle('output_footer_text_style');
+            
+            let blocksHTML = '';
+            
+            for (let i = 0; i < state.textBlocks.length; i++) {
+                const isEven = i % 2 === 1;
+                const suffix = state.isOddEvenMode ? (isEven ? '_even' : '_odd') : '';
+                
+                const blockStyle = generateInlineStyle('output_text_block_style' + suffix);
+                const paraStyle = generateInlineStyle('output_text_paragraph_style' + suffix);
+                const smallQuoteStyle = generateInlineStyle('output_text_smallquote_style' + suffix);
+                const bigQuoteStyle = generateInlineStyle('output_text_bigquote_style' + suffix);
+                
+                let blockContent = '';
+                
+                for (const element of state.textBlocks[i]) {
+                    if (element.type === 'paragraph') {
+                        blockContent += `<p style="${paraStyle}">${element.content}</p>\n`;
+                    } else if (element.type === 'quote') {
+                        const quoteStyle = element.quoteType === 'smallquote' ? smallQuoteStyle : bigQuoteStyle;
+                        blockContent += `<br><div style="${quoteStyle}">${element.content}</div><br>\n`;
+                    }
+                }
+                
+                if (state.isDetailsMode) {
+                    blocksHTML += `
+        <details>
+            <summary>${state.summaryTexts[i] || `Section ${i + 1}`}</summary>
+            <div style="${blockStyle}">
+                ${blockContent}
+            </div>
+        </details>\n`;
+                } else {
+                    blocksHTML += `
+        <div style="${blockStyle}">
+            ${blockContent}
+        </div>\n`;
+                }
+            }
+            
+            const imageHTML = state.imageData 
+                ? `<div style="${imageStyle}"></div>`
+                : '';
+            
+            return `<div style="${containerStyle}">
+    <div style="${headerStyle}">
+        ${imageHTML}
+        <div style="${cardNameStyle}">${state.cardName}</div>
+        <div style="${llmStyle}">${state.llmUsed}</div>
+    </div>
+    <div style="${textContainerStyle}">
+        ${blocksHTML}
+    </div>
+    <div style="${footerStyle}">
+        <span style="${footerTextStyle}">From RisuAI, with Logarhythm𝄞</span>
+    </div>
+</div>`;
+        }
+
+        function generateInlineStyle(className, extraStyles = {}) {
+            const styles = { ...state.styles[className], ...extraStyles };
+            return Object.entries(styles)
+                .filter(([key, value]) => value && value !== 'transparent' || key === 'background')
+                .map(([key, value]) => `${key}: ${value}`)
+                .join('; ');
+        }
+
+        // ============================================
+        // EDIT MODE
+        // ============================================
+
+        function toggleEditMode() {
+            state.isEditMode = !state.isEditMode;
+            
+            const previewFrame = document.getElementById('previewFrame');
+            const editTextarea = document.getElementById('editTextarea');
+            const editBtn = document.getElementById('editBtn');
+            const previewTitle = document.getElementById('previewTitle');
+            
+            if (state.isEditMode) {
+                previewFrame.classList.add('hidden');
+                editTextarea.classList.remove('hidden');
+                editTextarea.value = previewFrame.innerHTML;
+                editBtn.textContent = 'Preview';
+                previewTitle.textContent = 'Edit HTML';
+            } else {
+                previewFrame.classList.remove('hidden');
+                editTextarea.classList.add('hidden');
+                editBtn.textContent = 'Edit HTML';
+                previewTitle.textContent = 'Preview';
+                // Apply edits
+                previewFrame.innerHTML = editTextarea.value;
+            }
+        }
+
+        function updateFromEdit() {
+            // When in edit mode, changes to textarea update the stored HTML
+            // This will be applied when switching back to preview
+        }
+
+        // ============================================
+        // OUTPUT GENERATION
+        // ============================================
+
+        function generateOutput() {
+            let output;
+            
+            if (state.isEditMode) {
+                output = document.getElementById('editTextarea').value;
+            } else {
+                output = document.getElementById('previewFrame').innerHTML;
+            }
+            
+            // Pretty print the HTML
+            output = formatHTML(output);
+            
+            document.getElementById('outputTextarea').value = output;
+        }
+
+        function formatHTML(html) {
+            let formatted = '';
+            let indent = 0;
+            const tab = '    ';
+            
+            // Simple HTML formatter
+            html = html.replace(/>\s*</g, '>\n<');
+            const lines = html.split('\n');
+            
+            for (let line of lines) {
+                line = line.trim();
+                if (!line) continue;
+                
+                // Decrease indent for closing tags
+                if (line.startsWith('</')) {
+                    indent = Math.max(0, indent - 1);
+                }
+                
+                formatted += tab.repeat(indent) + line + '\n';
+                
+                // Increase indent for opening tags (not self-closing)
+                if (line.startsWith('<') && !line.startsWith('</') && 
+                    !line.endsWith('/>') && !line.includes('</')) {
+                    // Check if it's not a void element
+                    const voidElements = ['br', 'hr', 'img', 'input', 'meta', 'link'];
+                    const tagMatch = line.match(/<(\w+)/);
+                    if (tagMatch && !voidElements.includes(tagMatch[1].toLowerCase())) {
+                        indent++;
+                    }
+                }
+            }
+            
+            return formatted.trim();
+        }
+
+        async function copyOutput() {
+            const output = document.getElementById('outputTextarea').value;
+            
+            try {
+                await navigator.clipboard.writeText(output);
+                
+                // Visual feedback
+                const btn = event.target;
+                const originalText = btn.textContent;
+                btn.textContent = 'Copied!';
+                btn.classList.remove('btn-primary');
+                btn.classList.add('btn-success');
+                
+                setTimeout(() => {
+                    btn.textContent = originalText;
+                    btn.classList.remove('btn-success');
+                    btn.classList.add('btn-primary');
+                }, 2000);
+            } catch (err) {
+                console.error('Failed to copy:', err);
+                alert('Failed to copy to clipboard.');
+            }
+        }
+
+        // ============================================
+        // PRESETS
+        // ============================================
+
+        function loadPreset() {
+            const select = document.getElementById('presetSelect');
+            const presetName = select.value;
+            
+            if (!presetName || !presets[presetName]) return;
+            
+            const preset = presets[presetName];
+            
+            for (const [className, styles] of Object.entries(preset)) {
+                state.styles[className] = { ...styles };
+                
+                // Also set odd/even variants
+                if (styleDefinitions[className]?.isOddEven) {
+                    state.styles[className + '_odd'] = { ...styles };
+                    state.styles[className + '_even'] = { ...styles };
+                }
+            }
+            
+            generateStyleEditors();
+            updatePreview();
+            
+            select.value = '';
+        }
+
+        function downloadPreset() {
+            const preset = {};
+            
+            for (const className of Object.keys(styleDefinitions)) {
+                preset[className] = { ...state.styles[className] };
+                
+                if (styleDefinitions[className].isOddEven) {
+                    preset[className + '_odd'] = { ...state.styles[className + '_odd'] };
+                    preset[className + '_even'] = { ...state.styles[className + '_even'] };
+                }
+            }
+            
+            const blob = new Blob([JSON.stringify(preset, null, 2)], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+            
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'text-formatter-preset.json';
+            a.click();
+            
+            URL.revokeObjectURL(url);
+        }
+
+        function uploadPreset(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+            
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                try {
+                    const preset = JSON.parse(e.target.result);
+                    
+                    for (const [className, styles] of Object.entries(preset)) {
+                        state.styles[className] = { ...styles };
+                    }
+                    
+                    generateStyleEditors();
+                    updatePreview();
+                } catch (err) {
+                    console.error('Failed to parse preset:', err);
+                    alert('Invalid preset file.');
+                }
+            };
+            reader.readAsText(file);
+            
+            // Reset input
+            event.target.value = '';
+        }
+
+        // ============================================
+        // INITIALIZATION
+        // ============================================
+
+        function init() {
+            initializeStyles();
+            generateStyleEditors();
+        }
+
+        // Run on load
+        init();
+    </script>
+</body>
+</html>
