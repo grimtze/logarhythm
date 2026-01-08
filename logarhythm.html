@@ -405,137 +405,94 @@
             display: none;
         }
 		
-        .gradient-editor {
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
-            padding: 8px;
-            background: #333;
-            border-radius: 4px;
-            margin-top: 4px;
-        }
+		.gradient-editor {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: 8px;
+    background: #333;
+    border-radius: 4px;
+    margin-top: 4px;
+}
+.pill-editor {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px;
+    background: #2a2a2a;
+    border-radius: 6px;
+    margin-bottom: 8px;
+    flex-wrap: wrap;
+}
 
-        .pill-editor {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            padding: 8px;
-            background: #2a2a2a;
-            border-radius: 6px;
-            margin-bottom: 8px;
-            flex-wrap: wrap;
-        }
+.pill-editor input[type="text"] {
+    flex: 1;
+    min-width: 100px;
+}
 
-        .pill-editor input[type="text"] {
-            flex: 1;
-            min-width: 80px;
-        }
+.pill-editor input[type="color"] {
+    width: 32px;
+    height: 28px;
+}
 
-        .pill-editor input[type="color"] {
-            width: 32px;
-            height: 28px;
-        }
+.pill-editor-colors {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
 
-        .pill-editor-colors {
-            display: flex;
-            align-items: center;
-            gap: 4px;
-        }
+.pill-editor-colors label {
+    font-size: 0.7rem;
+    color: #888;
+}
 
-        .pill-editor-colors label {
-            font-size: 0.7rem;
-            color: #888;
-        }
+.pill-preview {
+    padding: 4px 12px;
+    border-radius: 16px;
+    font-size: 0.8rem;
+    white-space: nowrap;
+}
+.gradient-stop {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
 
-        .pill-preview {
-            padding: 4px 12px;
-            border-radius: 16px;
-            font-size: 0.8rem;
-            white-space: nowrap;
-            line-height: 1.4;
-            display: inline-flex;
-            align-items: center;
-            min-height: 24px;
-        }
+.gradient-stop input[type="color"] {
+    width: 32px;
+    height: 24px;
+}
 
-        .gradient-stop {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
+.gradient-stop input[type="number"] {
+    width: 60px;
+}
 
-        .gradient-stop input[type="color"] {
-            width: 32px;
-            height: 24px;
-        }
+.gradient-preview {
+    height: 24px;
+    border-radius: 4px;
+    border: 1px solid #555;
+    margin-top: 4px;
+}
 
-        .gradient-stop input[type="number"] {
-            width: 60px;
-        }
+.border-editor {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    flex-wrap: wrap;
+}
 
-        .gradient-preview {
-            height: 24px;
-            border-radius: 4px;
-            border: 1px solid #555;
-            margin-top: 4px;
-        }
+.border-editor input[type="number"] {
+    width: 60px;
+}
 
-        .border-editor {
-            display: flex;
-            gap: 8px;
-            align-items: center;
-            flex-wrap: wrap;
-        }
+.border-editor select {
+    width: 100px;
+}
 
-        .border-editor input[type="number"] {
-            width: 60px;
-        }
-
-        .border-editor select {
-            width: 100px;
-        }
-
-        .border-editor input[type="color"] {
-            width: 32px;
-            height: 28px;
-        }
-
-        .color-with-alpha {
-            display: flex;
-            gap: 4px;
-            align-items: center;
-        }
-
-        .color-with-alpha input[type="range"] {
-            width: 60px;
-            height: 4px;
-        }
-
-        .alpha-value {
-            font-size: 0.7rem;
-            color: #888;
-            width: 30px;
-        }
-
-        .section-block-controls {
-            display: flex;
-            gap: 4px;
-            align-items: center;
-            padding: 8px;
-            background: #2a2a2a;
-            border-radius: 6px;
-            margin-bottom: 8px;
-        }
-
-        .section-block-controls span {
-            flex: 1;
-            font-size: 0.85rem;
-        }
-
-        .section-block-controls .btn {
-            padding: 4px 8px;
-            font-size: 0.75rem;
-        }
+.border-editor input[type="color"] {
+    width: 32px;
+    height: 28px;
+}
 
         ::-webkit-scrollbar {
             width: 8px;
@@ -584,33 +541,33 @@
                 </div>
 
                 <!-- Header Data Section -->
-                <div class="section">
-                    <div class="section-header" onclick="toggleSection(this)">
-                        <h3>📝 Header Data</h3>
-                        <span class="toggle-icon">▼</span>
-                    </div>
-                    <div class="section-content">
-                        <div class="form-group">
-                            <label>Card Name</label>
-                            <input type="text" id="cardNameInput" placeholder="Character name..." oninput="updatePreview()">
-                        </div>
-                        
-                        <div class="form-group">
-                            <label>Pills / Badges</label>
-                            <div id="pillsContainer"></div>
-                            <button class="btn btn-secondary btn-small" onclick="addPill()" style="margin-top: 8px;">+ Add Pill</button>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label>Profile Image</label>
-                            <div class="image-controls">
-                                <button class="btn btn-secondary btn-small" onclick="document.getElementById('imageUpload').click()">Upload</button>
-                                <button class="btn btn-danger btn-small" onclick="removeImage()">Remove</button>
-                                <input type="file" id="imageUpload" accept="image/*" onchange="handleImageUpload(event)">
-                            </div>
-                        </div>
-                    </div>
-                </div>
+ <div class="section">
+    <div class="section-header" onclick="toggleSection(this)">
+        <h3>📝 Header Data</h3>
+        <span class="toggle-icon">▼</span>
+    </div>
+    <div class="section-content">
+        <div class="form-group">
+            <label>Card Name</label>
+            <input type="text" id="cardNameInput" placeholder="Character name..." oninput="updatePreview()">
+        </div>
+        
+        <div class="form-group">
+            <label>Pills / Badges</label>
+            <div id="pillsContainer"></div>
+            <button class="btn btn-secondary btn-small" onclick="addPill()" style="margin-top: 8px;">+ Add Pill</button>
+        </div>
+        
+        <div class="form-group">
+            <label>Profile Image</label>
+            <div class="image-controls">
+                <button class="btn btn-secondary btn-small" onclick="document.getElementById('imageUpload').click()">Upload</button>
+                <button class="btn btn-danger btn-small" onclick="removeImage()">Remove</button>
+                <input type="file" id="imageUpload" accept="image/*" onchange="handleImageUpload(event)">
+            </div>
+        </div>
+    </div>
+</div>
 
                 <!-- Search & Replace Section -->
                 <div class="section">
@@ -650,7 +607,7 @@
                 <!-- Collapsible Sections -->
                 <div class="section">
                     <div class="section-header" onclick="toggleSection(this)">
-                        <h3>📂 Sections Management</h3>
+                        <h3>📂 Collapsible Sections</h3>
                         <span class="toggle-icon">▼</span>
                     </div>
                     <div class="section-content">
@@ -659,7 +616,6 @@
                             <span class="toggle-label">Wrap blocks in &lt;details&gt;</span>
                         </div>
                         <div id="summaryInputs" style="margin-top: 12px; display: none;"></div>
-                        <div id="sectionControls" style="margin-top: 12px;"></div>
                     </div>
                 </div>
 
@@ -763,7 +719,7 @@
         const state = {
             textBlocks: [],
             cardName: '',
-            pills: [],
+    pills: [], // ADD THIS - array of {text: '', color: '', bgColor: ''}
             imageData: '',
             hasContent: false,
             isEditMode: false,
@@ -1089,343 +1045,126 @@
             
             return section;
         }
-
-        function createPropertyInput(elementKey, prop, value) {
-            const isColor = (prop === 'color' || prop === 'background-color');
-            const isBorder = prop === 'border';
-            const isBackground = (prop === 'background');
-            
-            let inputHTML = '';
-            
-            if (isBorder) {
-                const borderMatch = (value || '').match(/^(\d+(?:px)?)\s+(solid|dashed|dotted|none)\s+(#?\w+)?/);
-                const width = borderMatch ? borderMatch[1].replace('px', '') : '0';
-                const style = borderMatch ? borderMatch[2] : 'solid';
-                const color = borderMatch ? borderMatch[3] : '#4b5563';
-                
-                inputHTML = `
-                    <div class="border-editor">
-                        <input type="number" value="${width}" min="0" onchange="updateBorderStyle('${elementKey}', '${prop}', this.parentElement)">
-                        <select onchange="updateBorderStyle('${elementKey}', '${prop}', this.parentElement)">
-                            <option value="none" ${style === 'none' ? 'selected' : ''}>none</option>
-                            <option value="solid" ${style === 'solid' ? 'selected' : ''}>solid</option>
-                            <option value="dashed" ${style === 'dashed' ? 'selected' : ''}>dashed</option>
-                            <option value="dotted" ${style === 'dotted' ? 'selected' : ''}>dotted</option>
-                        </select>
-                        <input type="color" value="${color && color.startsWith('#') ? color : '#4b5563'}" onchange="updateBorderStyle('${elementKey}', '${prop}', this.parentElement)">
-                    </div>
-                `;
-            } else if (isBackground || isColor) {
-                const colorValue = (value && value.startsWith('#')) ? value.substring(0, 7) : '#000000';
-                let alpha = 1;
-                if (value && value.startsWith('rgba')) {
-                    const match = value.match(/rgba\(\s*\d+\s*,\s*\d+\s*,\s*\d+\s*,\s*([\d.]+)\s*\)/);
-                    if (match) alpha = parseFloat(match[1]);
-                }
-                inputHTML = `
-                    <div class="color-with-alpha">
-                        <input type="color" value="${colorValue}" onchange="updateColorWithAlpha('${elementKey}', '${prop}', this.parentElement)">
-                        <input type="range" min="0" max="1" step="0.1" value="${alpha}" onchange="updateColorWithAlpha('${elementKey}', '${prop}', this.parentElement)">
-                        <span class="alpha-value">${Math.round(alpha * 100)}%</span>
-                    </div>
-                    <input type="text" value="${value || ''}" onchange="updateTemplateStyle('${elementKey}', '${prop}', this.value)" style="margin-top: 4px;">
-                `;
-            } else {
-                inputHTML = `
-                    <input type="text" value="${value || ''}" 
+function createPropertyInput(elementKey, prop, value) {
+    const isColor = (prop === 'color' || prop === 'background-color' || prop === 'background');
+    const isBorder = prop === 'border';
+    const isBackground = (prop === 'background' || prop === 'background-color');
+    
+    let inputHTML = '';
+    
+    if (isBorder) {
+        // Parse existing border value: "1px solid #4b5563"
+        const borderMatch = (value || '').match(/^(\d+)px\s+(\w+)\s+(#[a-fA-F0-9]{6}|#[a-fA-F0-9]{3}|[a-zA-Z]+)$/);
+        const width = borderMatch ? borderMatch[1] : '1';
+        const style = borderMatch ? borderMatch[2] : 'solid';
+        const color = borderMatch ? borderMatch[3] : '#4b5563';
+        
+        inputHTML = `
+            <div class="border-editor">
+                <input type="number" value="${width}" min="0" max="20" 
+                    onchange="updateBorderStyle('${elementKey}', '${prop}', this.parentElement)">
+                <span>px</span>
+                <select onchange="updateBorderStyle('${elementKey}', '${prop}', this.parentElement)">
+                    <option value="none" ${style === 'none' ? 'selected' : ''}>none</option>
+                    <option value="solid" ${style === 'solid' ? 'selected' : ''}>solid</option>
+                    <option value="dashed" ${style === 'dashed' ? 'selected' : ''}>dashed</option>
+                    <option value="dotted" ${style === 'dotted' ? 'selected' : ''}>dotted</option>
+                    <option value="double" ${style === 'double' ? 'selected' : ''}>double</option>
+                </select>
+                <input type="color" value="${color.startsWith('#') ? color : '#4b5563'}" 
+                    onchange="updateBorderStyle('${elementKey}', '${prop}', this.parentElement)">
+            </div>
+        `;
+    } else if (isBackground) {
+        // Check if it's a gradient or solid color
+        const isGradient = value && value.includes('gradient');
+        const solidColor = (!value || value.startsWith('#')) ? (value || '#000000') : '#000000';
+        
+        inputHTML = `
+            <div class="background-type-selector">
+                <select onchange="toggleBackgroundType('${elementKey}', '${prop}', this.value, this.parentElement)">
+                    <option value="solid" ${!isGradient ? 'selected' : ''}>Solid Color</option>
+                    <option value="gradient" ${isGradient ? 'selected' : ''}>Gradient</option>
+                </select>
+                <div class="solid-color-editor" style="${isGradient ? 'display:none' : ''}">
+                    <input type="color" value="${solidColor}" 
                         onchange="updateTemplateStyle('${elementKey}', '${prop}', this.value)">
-                `;
-            }
-            
-            return `
-                <div class="style-property">
-                    <div class="style-property-label">
-                        ${prop}
-                        <button style="float: right; background: none; border: none; color: #ff6b6b; cursor: pointer; font-size: 0.8rem;" 
-                            onclick="removeProperty('${elementKey}', '${prop}')">✕</button>
-                    </div>
-                    <div class="style-property-input">
-                        ${inputHTML}
-                    </div>
+                    <input type="text" value="${!isGradient ? value || '' : ''}" 
+                        onchange="updateTemplateStyle('${elementKey}', '${prop}', this.value)">
                 </div>
-            `;
-        }
-
-        function updateColorWithAlpha(elementKey, prop, container) {
-            const colorInput = container.querySelector('input[type="color"]');
-            const alphaInput = container.querySelector('input[type="range"]');
-            const alphaLabel = container.querySelector('.alpha-value');
-            
-            const hex = colorInput.value;
-            const alpha = parseFloat(alphaInput.value);
-            
-            alphaLabel.textContent = `${Math.round(alpha * 100)}%`;
-            
-            const r = parseInt(hex.substring(1, 3), 16);
-            const g = parseInt(hex.substring(3, 5), 16);
-            const b = parseInt(hex.substring(5, 7), 16);
-            
-            let colorValue;
-            if (alpha < 1) {
-                colorValue = `rgba(${r}, ${g}, ${b}, ${alpha})`;
-            } else {
-                colorValue = hex;
-            }
-            
-            const textInput = container.parentElement.querySelector('input[type="text"]');
-            if (textInput) textInput.value = colorValue;
-            
-            updateTemplateStyle(elementKey, prop, colorValue);
-        }
-
-        function updateBorderStyle(elementKey, prop, container) {
-            const widthInput = container.querySelector('input[type="number"]');
-            const styleSelect = container.querySelector('select');
-            const colorInput = container.querySelector('input[type="color"]');
-            
-            const borderValue = `${widthInput.value}px ${styleSelect.value} ${colorInput.value}`;
-            updateTemplateStyle(elementKey, prop, borderValue);
-        }
-
-        function updateTemplateStyle(elementKey, prop, value) {
+                <div class="gradient-editor" style="${!isGradient ? 'display:none' : ''}" data-element="${elementKey}" data-prop="${prop}">
+                    <select class="gradient-type" onchange="updateGradient('${elementKey}', '${prop}')">
+                        <option value="linear" ${value?.includes('linear') ? 'selected' : ''}>Linear</option>
+                        <option value="radial" ${value?.includes('radial') ? 'selected' : ''}>Radial</option>
+                    </select>
+                    <div class="gradient-direction" style="${value?.includes('radial') ? 'display:none' : ''}">
+                        <label style="font-size: 0.75rem;">Angle:</label>
+                        <input type="number" class="gradient-angle" value="${parseGradientAngle(value)}" min="0" max="360" 
+                            onchange="updateGradient('${elementKey}', '${prop}')">
+                        <span>deg</span>
+                    </div>
+                    <div class="gradient-stops">
+                        ${generateGradientStops(elementKey, prop, value)}
+                    </div>
+                    <button class="btn btn-secondary btn-small" onclick="addGradientStop('${elementKey}', '${prop}')">+ Add Stop</button>
+                    <div class="gradient-preview" style="background: ${isGradient ? value : 'linear-gradient(90deg, #000 0%, #fff 100%)'}"></div>
+                </div>
+            </div>
+        `;
+    } else if (isColor) {
+        const colorValue = (value && value.startsWith('#')) ? value : '#000000';
+        inputHTML = `
+            <input type="color" value="${colorValue}" onchange="updateTemplateStyle('${elementKey}', '${prop}', this.value)">
+            <input type="text" value="${value || ''}" onchange="updateTemplateStyle('${elementKey}', '${prop}', this.value)">
+        `;
+    } else {
+        inputHTML = `<input type="text" value="${value || ''}" onchange="updateTemplateStyle('${elementKey}', '${prop}', this.value)">`;
+    }
+    
+    return `
+        <div class="style-property">
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+                <span class="style-property-label">${prop}</span>
+                <button class="btn btn-danger btn-small" style="padding: 2px 6px; font-size: 0.7rem;" onclick="removeProperty('${elementKey}', '${prop}')">×</button>
+            </div>
+            <div class="style-property-input">${inputHTML}</div>
+        </div>
+    `;
+}
+        function updateTemplateStyle(elementKey, property, value) {
             if (!state.templateStyles[elementKey]) {
                 state.templateStyles[elementKey] = {};
             }
-            state.templateStyles[elementKey][prop] = value;
+            state.templateStyles[elementKey][property] = value;
             updatePreview();
         }
 
-        function addProperty(elementKey) {
-            const prop = prompt('Enter CSS property name (e.g., padding, margin, color):');
-            if (!prop) return;
-            
-            if (!state.templateStyles[elementKey]) {
-                state.templateStyles[elementKey] = {};
-            }
-            state.templateStyles[elementKey][prop] = '';
-            
-            generateStyleEditors();
-        }
-
-        function removeProperty(elementKey, prop) {
+        function removeProperty(elementKey, property) {
             if (state.templateStyles[elementKey]) {
-                delete state.templateStyles[elementKey][prop];
+                delete state.templateStyles[elementKey][property];
                 generateStyleEditors();
                 updatePreview();
             }
         }
 
-        // ============================================
-        // TOGGLE FUNCTIONS
-        // ============================================
-
-        function toggleOddEven() {
-            const toggle = document.getElementById('oddEvenToggle');
-            toggle.classList.toggle('active');
-            state.isOddEvenMode = toggle.classList.contains('active');
+        function addProperty(elementKey) {
+            const prop = prompt('Enter CSS property name (e.g., margin, padding, border):');
+            if (!prop) return;
             
-            if (state.isOddEvenMode) {
-                for (const [key, def] of Object.entries(templateDefinitions.elements)) {
-                    if (def.supportsOddEven && !state.templateStyles[key + '_even']) {
-                        state.templateStyles[key + '_even'] = JSON.parse(JSON.stringify(state.templateStyles[key] || {}));
-                    }
-                }
+            const value = prompt('Enter value:');
+            if (value === null) return;
+            
+            if (!state.templateStyles[elementKey]) {
+                state.templateStyles[elementKey] = {};
             }
+            state.templateStyles[elementKey][prop.trim()] = value.trim();
             
             generateStyleEditors();
             updatePreview();
         }
 
-        function toggleDetails() {
-            const toggle = document.getElementById('detailsToggle');
-            toggle.classList.toggle('active');
-            state.isDetailsMode = toggle.classList.contains('active');
-            
-            const summaryContainer = document.getElementById('summaryInputs');
-            summaryContainer.style.display = state.isDetailsMode ? 'block' : 'none';
-            
-            if (state.isDetailsMode) {
-                updateSummaryInputs();
-            }
-            
-            updatePreview();
-        }
-
-        function updateSummaryInputs() {
-            const container = document.getElementById('summaryInputs');
-            
-            if (state.textBlocks.length === 0) {
-                container.innerHTML = '<p style="font-size: 0.8rem; color: #666;">No sections yet.</p>';
-                return;
-            }
-            
-            container.innerHTML = state.textBlocks.map((_, index) => `
-                <div class="summary-input-group">
-                    <label>Section ${index + 1}</label>
-                    <input type="text" value="${state.summaryTexts[index] || ''}" 
-                        placeholder="Summary text..." 
-                        onchange="updateSummaryText(${index}, this.value)">
-                </div>
-            `).join('');
-        }
-
-        function updateSummaryText(index, value) {
-            state.summaryTexts[index] = value;
-            updatePreview();
-        }
-
         // ============================================
-        // SECTION MANAGEMENT
-        // ============================================
-
-        function renderSectionControls() {
-            const container = document.getElementById('sectionControls');
-            
-            if (state.textBlocks.length <= 1) {
-                container.innerHTML = '';
-                return;
-            }
-            
-            container.innerHTML = `
-                <label style="font-size: 0.8rem; color: #aaa; margin-bottom: 8px; display: block;">Manage Sections</label>
-                ${state.textBlocks.map((_, index) => `
-                    <div class="section-block-controls">
-                        <span>Section ${index + 1}</span>
-                        <button class="btn btn-secondary" onclick="moveSectionUp(${index})" ${index === 0 ? 'disabled' : ''}>↑</button>
-                        <button class="btn btn-secondary" onclick="moveSectionDown(${index})" ${index === state.textBlocks.length - 1 ? 'disabled' : ''}>↓</button>
-                        <button class="btn btn-danger" onclick="removeSection(${index})">×</button>
-                    </div>
-                `).join('')}
-            `;
-        }
-
-        function moveSectionUp(index) {
-            if (index <= 0) return;
-            [state.textBlocks[index], state.textBlocks[index - 1]] = [state.textBlocks[index - 1], state.textBlocks[index]];
-            [state.summaryTexts[index], state.summaryTexts[index - 1]] = [state.summaryTexts[index - 1], state.summaryTexts[index]];
-            renderSectionControls();
-            updateSummaryInputs();
-            updatePreview();
-        }
-
-        function moveSectionDown(index) {
-            if (index >= state.textBlocks.length - 1) return;
-            [state.textBlocks[index], state.textBlocks[index + 1]] = [state.textBlocks[index + 1], state.textBlocks[index]];
-            [state.summaryTexts[index], state.summaryTexts[index + 1]] = [state.summaryTexts[index + 1], state.summaryTexts[index]];
-            renderSectionControls();
-            updateSummaryInputs();
-            updatePreview();
-        }
-
-        function removeSection(index) {
-            if (state.textBlocks.length <= 1) {
-                alert('Cannot remove the last section.');
-                return;
-            }
-            state.textBlocks.splice(index, 1);
-            state.summaryTexts.splice(index, 1);
-            renderSectionControls();
-            updateSummaryInputs();
-            updatePreview();
-        }
-
-        // ============================================
-        // PILL MANAGEMENT
-        // ============================================
-
-        function addPill(text = '', bgColor = '#000000', textColor = '#f8f8f2', borderColor = '#4b5563', link = '') {
-            state.pills.push({
-                text: text || 'New Pill',
-                bgColor: bgColor,
-                textColor: textColor,
-                borderColor: borderColor,
-                link: link
-            });
-            renderPills();
-            updatePreview();
-        }
-
-        function updatePill(index, field, value) {
-            if (state.pills[index]) {
-                state.pills[index][field] = value;
-                renderPills();
-                updatePreview();
-            }
-        }
-
-        function removePill(index) {
-            state.pills.splice(index, 1);
-            renderPills();
-            updatePreview();
-        }
-
-        function renderPills() {
-            const container = document.getElementById('pillsContainer');
-            
-            if (state.pills.length === 0) {
-                container.innerHTML = '<p style="font-size: 0.8rem; color: #666;">No pills added yet. Click "+ Add Pill" to create one.</p>';
-                return;
-            }
-            
-            container.innerHTML = state.pills.map((pill, index) => `
-                <div class="pill-editor">
-                    <input type="text" value="${pill.text}" placeholder="Pill text..." 
-                        onchange="updatePill(${index}, 'text', this.value)" style="flex: 2;">
-                    
-                    <input type="text" value="${pill.link || ''}" placeholder="URL (optional)" 
-                        onchange="updatePill(${index}, 'link', this.value)" style="flex: 2;">
-                    
-                    <div class="pill-editor-colors">
-                        <label>BG</label>
-                        <input type="color" value="${pill.bgColor}" 
-                            onchange="updatePill(${index}, 'bgColor', this.value)" title="Background Color">
-                    </div>
-                    
-                    <div class="pill-editor-colors">
-                        <label>Text</label>
-                        <input type="color" value="${pill.textColor}" 
-                            onchange="updatePill(${index}, 'textColor', this.value)" title="Text Color">
-                    </div>
-                    
-                    <div class="pill-editor-colors">
-                        <label>Border</label>
-                        <input type="color" value="${pill.borderColor}" 
-                            onchange="updatePill(${index}, 'borderColor', this.value)" title="Border Color">
-                    </div>
-                    
-                    <div class="pill-preview" style="background: ${pill.bgColor}; color: ${pill.textColor}; border: 1px solid ${pill.borderColor};">
-                        ${pill.link ? '🔗 ' : ''}${pill.text}
-                    </div>
-                    
-                    <button class="btn btn-danger btn-small" onclick="removePill(${index})" style="padding: 4px 8px;">×</button>
-                </div>
-            `).join('');
-        }
-
-        // ============================================
-        // IMAGE HANDLING
-        // ============================================
-
-        function handleImageUpload(event) {
-            const file = event.target.files[0];
-            if (!file) return;
-
-            const reader = new FileReader();
-            reader.onload = function(e) {
-                state.imageData = e.target.result;
-                updatePreview();
-            };
-            reader.readAsDataURL(file);
-        }
-
-        function removeImage() {
-            state.imageData = '';
-            document.getElementById('imageUpload').value = '';
-            updatePreview();
-        }
-
-        // ============================================
-        // PASTE HANDLING
+        // PASTE & ADD HANDLING
         // ============================================
 
         async function handlePaste() {
@@ -1433,113 +1172,198 @@
                 document.getElementById('confirmModal').classList.remove('hidden');
                 return;
             }
-            await executePaste(true);
+            await executePaste();
         }
 
         async function confirmPaste() {
             closeModal();
-            await executePaste(true);
-        }
-
-        async function executePaste(isNew = true) {
-            try {
-                const clipboardItems = await navigator.clipboard.read();
-                let html = '';
-                
-                for (const item of clipboardItems) {
-                    if (item.types.includes('text/html')) {
-                        const blob = await item.getType('text/html');
-                        html = await blob.text();
-                        break;
-                    }
-                }
-                
-                if (!html) {
-                    const text = await navigator.clipboard.readText();
-                    if (text) {
-                        html = `<p style="color: #F8F8F2">${text}</p>`;
-                    }
-                }
-                
-                if (html) {
-                    processHTML(html, isNew);
-                }
-            } catch (err) {
-                console.error('Failed to read clipboard:', err);
-                alert('Could not read clipboard. Please use the manual paste textarea below.');
-            }
+            await executePaste();
         }
 
         function handleManualPaste() {
-            const textarea = document.getElementById('manualPasteInput');
-            const html = textarea.value.trim();
+            const html = document.getElementById('manualPasteInput').value;
             
-            if (!html) {
-                alert('Please paste some content in the textarea first.');
+            if (!html.trim()) {
+                alert('Please paste some content first.');
                 return;
             }
             
-            const isNew = !state.hasContent;
-            processHTML(html, isNew);
-            textarea.value = '';
+            const parsed = parseInputHTML(html);
+            
+            if (parsed) {
+                state.textBlocks = [parsed.textContent];
+                state.cardName = parsed.cardName;
+                state.imageData = parsed.imageData;
+                state.hasContent = true;
+                state.summaryTexts = ['Section 1'];
+                
+                document.getElementById('cardNameInput').value = state.cardName;
+                document.getElementById('addBtn').disabled = false;
+                
+                updateQuoteColorMappings();
+                updateSummaryInputs();
+                updatePreview();
+                
+                document.getElementById('manualPasteInput').value = '';
+            } else {
+                alert('Could not parse the content. Make sure it contains valid HTML.');
+            }
         }
 
-        function processHTML(html, isNew) {
-            const parser = new DOMParser();
-            const doc = parser.parseFromString(html, 'text/html');
-            const body = doc.body;
-            
-            const newBlock = parseTextContent(body);
-            
-            if (newBlock.length === 0) {
-                alert('No valid content found in paste.');
-                return;
+        async function executePaste() {
+            try {
+                let html = '';
+                
+                if (navigator.clipboard.read) {
+                    try {
+                        const clipboardItems = await navigator.clipboard.read();
+                        
+                        for (const item of clipboardItems) {
+                            if (item.types.includes('text/html')) {
+                                const blob = await item.getType('text/html');
+                                html = await blob.text();
+                                break;
+                            }
+                        }
+                        
+                        if (!html) {
+                            for (const item of clipboardItems) {
+                                if (item.types.includes('text/plain')) {
+                                    const blob = await item.getType('text/plain');
+                                    html = await blob.text();
+                                    break;
+                                }
+                            }
+                        }
+                    } catch (readError) {
+                        html = await navigator.clipboard.readText();
+                    }
+                } else {
+                    html = await navigator.clipboard.readText();
+                }
+                
+                if (!html) {
+                    alert('No content found in clipboard.');
+                    return;
+                }
+                
+                const parsed = parseInputHTML(html);
+                
+                if (parsed) {
+                    state.textBlocks = [parsed.textContent];
+                    state.cardName = parsed.cardName;
+					state.pills = parsed.pills || [];
+                    state.imageData = parsed.imageData;
+                    state.hasContent = true;
+                    state.summaryTexts = ['Section 1'];
+                    
+                    document.getElementById('cardNameInput').value = state.cardName;
+                    document.getElementById('addBtn').disabled = false;
+                    
+					renderPills();
+                    updateQuoteColorMappings();
+                    updateSummaryInputs();
+                    updatePreview();
+                } else {
+                    alert('Could not parse the pasted content.');
+                }
+            } catch (err) {
+                console.error('Failed to read clipboard:', err);
+                alert('Failed to read clipboard.');
             }
-            
-            if (isNew) {
-                state.textBlocks = [newBlock];
-                state.summaryTexts = ['Section 1'];
-            } else {
-                state.textBlocks.push(newBlock);
-                state.summaryTexts.push(`Section ${state.textBlocks.length}`);
-            }
-            
-            state.hasContent = true;
-            document.getElementById('addBtn').disabled = false;
-            
-            updateSummaryInputs();
-            renderSectionControls();
-            renderQuoteColorMappings();
-            updatePreview();
         }
 
         async function handleAdd() {
-            await executePaste(false);
-        }
-
-        // ============================================
-        // TEXT PARSING
-        // ============================================
-
-        function normalizeColor(color) {
-            if (!color) return '';
-            color = color.trim().toUpperCase();
+            if (!state.hasContent) return;
             
-            if (color.startsWith('RGB')) {
-                const match = color.match(/RGB\((\d+),\s*(\d+),\s*(\d+)\)/i);
-                if (match) {
-                    const r = parseInt(match[1]).toString(16).padStart(2, '0');
-                    const g = parseInt(match[2]).toString(16).padStart(2, '0');
-                    const b = parseInt(match[3]).toString(16).padStart(2, '0');
-                    return `#${r}${g}${b}`.toUpperCase();
+            try {
+                let html = '';
+                
+                if (navigator.clipboard.read) {
+                    try {
+                        const clipboardItems = await navigator.clipboard.read();
+                        
+                        for (const item of clipboardItems) {
+                            if (item.types.includes('text/html')) {
+                                const blob = await item.getType('text/html');
+                                html = await blob.text();
+                                break;
+                            }
+                        }
+                        
+                        if (!html) {
+                            for (const item of clipboardItems) {
+                                if (item.types.includes('text/plain')) {
+                                    const blob = await item.getType('text/plain');
+                                    html = await blob.text();
+                                    break;
+                                }
+                            }
+                        }
+                    } catch (readError) {
+                        html = await navigator.clipboard.readText();
+                    }
+                } else {
+                    html = await navigator.clipboard.readText();
                 }
+                
+                const parsed = parseInputHTML(html);
+                
+                if (parsed) {
+                    state.textBlocks.push(parsed.textContent);
+                    state.summaryTexts.push(`Section ${state.textBlocks.length}`);
+                    
+                    updateQuoteColorMappings();
+                    updateSummaryInputs();
+                    updatePreview();
+                }
+            } catch (err) {
+                console.error('Failed to read clipboard:', err);
+                alert('Failed to read clipboard.');
             }
-            
-            return color;
         }
 
-        function isParagraphColor(color) {
-            return PARAGRAPH_COLORS.includes(color);
+        // ============================================
+        // HTML PARSING
+        // ============================================
+
+        function parseInputHTML(html) {
+            const parser = new DOMParser();
+            const doc = parser.parseFromString(html, 'text/html');
+            
+            const container = doc.querySelector('div[style*="font-family"]') || doc.querySelector('div');
+            if (!container) return null;
+            
+            const cardNameEl = container.querySelector('h3');
+            const cardName = cardNameEl ? cardNameEl.textContent.trim() : '';
+            
+    // Parse pills - look for spans with border-radius: 16px
+    const pillElements = container.querySelectorAll('span[style*="border-radius: 16px"], span[style*="inline-block"]');
+    const pills = [];
+                
+    pillElements.forEach(el => {
+        const style = el.getAttribute('style') || '';
+        const text = el.textContent.trim();
+        
+        // Extract colors from style
+        const bgMatch = style.match(/background:\s*(#[a-fA-F0-9]{6}|#[a-fA-F0-9]{3})/i);
+        const colorMatch = style.match(/(?:^|;)\s*color:\s*(#[a-fA-F0-9]{6}|#[a-fA-F0-9]{3})/i);
+        const borderMatch = style.match(/border:\s*\d+px\s+\w+\s+(#[a-fA-F0-9]{6}|#[a-fA-F0-9]{3})/i);
+        
+        pills.push({
+            text: text,
+            bgColor: bgMatch ? bgMatch[1] : '#000000',
+            textColor: colorMatch ? colorMatch[1] : '#f8f8f2',
+            borderColor: borderMatch ? borderMatch[1] : '#4b5563'
+        });
+    });
+            const imgEl = container.querySelector('img');
+            const imageData = imgEl ? imgEl.src : '';
+            
+            const textContainer = container.querySelector('div[style*="border-top"]');
+            const textContent = parseTextContent(textContainer || container);
+            
+            return { cardName, pills, imageData, textContent };
         }
 
         function parseTextContent(container) {
@@ -1552,7 +1376,7 @@
                 const child = children[i];
                 const text = child.textContent.trim();
                 
-                if (!text || text.length === 0) continue;
+                if (!text) continue;
                 
                 const style = child.getAttribute('style') || '';
                 const colorMatch = style.match(/(?:^|;)\s*color:\s*(#[a-fA-F0-9]{6}|#[a-fA-F0-9]{3}|rgb\([^)]+\)|[a-zA-Z]+)/i);
@@ -1589,51 +1413,85 @@
                             content: text 
                         });
                     }
-                } else if (text.length > 0) {
+                } else {
                     elements.push({ type: 'paragraph', content: text });
                 }
             }
             
-            return elements.filter(el => el.content && el.content.trim().length > 0);
+            return elements;
         }
 
-        // ============================================
-        // QUOTE COLOR MAPPING
-        // ============================================
+        function normalizeColor(color) {
+            color = color.trim().toUpperCase();
+            
+            if (color.startsWith('RGB')) {
+                const match = color.match(/RGB\(\s*(\d+)\s*,\s*(\d+)\s*,\s*(\d+)\s*\)/i);
+                if (match) {
+                    const r = parseInt(match[1]).toString(16).padStart(2, '0');
+                    const g = parseInt(match[2]).toString(16).padStart(2, '0');
+                    const b = parseInt(match[3]).toString(16).padStart(2, '0');
+                    color = `#${r}${g}${b}`.toUpperCase();
+                }
+            }
+            
+            if (color.match(/^#[A-F0-9]{3}$/)) {
+                color = `#${color[1]}${color[1]}${color[2]}${color[2]}${color[3]}${color[3]}`;
+            }
+            
+            return color;
+        }
 
-        function renderQuoteColorMappings() {
+        function isParagraphColor(color) {
+            if (PARAGRAPH_COLORS.includes(color)) return true;
+            
+            const hex = color.replace('#', '');
+            const r = parseInt(hex.substring(0, 2), 16);
+            const g = parseInt(hex.substring(2, 4), 16);
+            const b = parseInt(hex.substring(4, 6), 16);
+            
+            const isLight = r > 200 && g > 200 && b > 200;
+            const isSimilar = Math.abs(r - g) < 20 && Math.abs(g - b) < 20 && Math.abs(r - b) < 20;
+            
+            return isLight && isSimilar;
+        }
+
+        function updateQuoteColorMappings() {
             const container = document.getElementById('quoteColorMappings');
             
             if (state.detectedColors.size === 0) {
-                container.innerHTML = '<p style="font-size: 0.8rem; color: #888;">Detected quote colors will appear here after pasting content.</p>';
+                container.innerHTML = '<p style="font-size: 0.8rem; color: #888;">No quote colors detected yet.</p>';
                 return;
             }
             
-            container.innerHTML = Array.from(state.detectedColors).map(color => `
-                <div class="quote-mapping">
+            container.innerHTML = '';
+            
+            for (const color of state.detectedColors) {
+                const mapping = document.createElement('div');
+                mapping.className = 'quote-mapping';
+                mapping.innerHTML = `
                     <div class="color-preview" style="background: ${color};"></div>
-                    <code style="font-size: 0.75rem; color: #aaa;">${color}</code>
-                    <select onchange="updateQuoteColorMap('${color}', this.value)">
+                    <span style="font-size: 0.8rem; font-family: monospace;">${color}</span>
+                    <select onchange="updateQuoteMapping('${color}', this.value)">
                         <option value="smallquote" ${state.quoteColorMap[color] === 'smallquote' ? 'selected' : ''}>Small Quote</option>
                         <option value="bigquote" ${state.quoteColorMap[color] === 'bigquote' ? 'selected' : ''}>Big Quote</option>
-                        <option value="paragraph" ${state.quoteColorMap[color] === 'paragraph' ? 'selected' : ''}>Paragraph (ignore)</option>
-                        <option value="unknown" ${state.quoteColorMap[color] === 'unknown' ? 'selected' : ''}>Unknown</option>
+                        <option value="paragraph" ${state.quoteColorMap[color] === 'paragraph' ? 'selected' : ''}>Paragraph</option>
+                        <option value="ignore" ${state.quoteColorMap[color] === 'ignore' ? 'selected' : ''}>Ignore</option>
                     </select>
-                </div>
-            `).join('');
+                `;
+                container.appendChild(mapping);
+            }
         }
 
-        function updateQuoteColorMap(color, quoteType) {
-            state.quoteColorMap[color] = quoteType;
+        function updateQuoteMapping(color, type) {
+            state.quoteColorMap[color] = type;
             
-            for (let block of state.textBlocks) {
-                for (let element of block) {
-                    if (element.originalColor === color) {
-                        if (quoteType === 'paragraph') {
+            for (let i = 0; i < state.textBlocks.length; i++) {
+                for (let j = 0; j < state.textBlocks[i].length; j++) {
+                    const element = state.textBlocks[i][j];
+                    if (element.type === 'quote' && element.originalColor === color) {
+                        element.quoteType = type === 'ignore' ? 'paragraph' : type;
+                        if (type === 'ignore' || type === 'paragraph') {
                             element.type = 'paragraph';
-                        } else {
-                            element.type = 'quote';
-                            element.quoteType = quoteType;
                         }
                     }
                 }
@@ -1647,21 +1505,21 @@
         // ============================================
 
         function executeReplace() {
-            const search = document.getElementById('searchInput').value;
-            const replace = document.getElementById('replaceInput').value;
+            const searchText = document.getElementById('searchInput').value;
+            const replaceText = document.getElementById('replaceInput').value;
             
-            if (!search) {
-                alert('Please enter text to search for.');
-                return;
-            }
+            if (!searchText) return;
             
             state.searchReplaceBackup = JSON.parse(JSON.stringify(state.textBlocks));
             
-            for (let block of state.textBlocks) {
-                for (let element of block) {
-                    element.content = element.content.split(search).join(replace);
+            for (let i = 0; i < state.textBlocks.length; i++) {
+                for (let j = 0; j < state.textBlocks[i].length; j++) {
+                    state.textBlocks[i][j].content = state.textBlocks[i][j].content.split(searchText).join(replaceText);
                 }
             }
+            
+            state.cardName = state.cardName.split(searchText).join(replaceText);
+            document.getElementById('cardNameInput').value = state.cardName;
             
             document.getElementById('undoBtn').disabled = false;
             updatePreview();
@@ -1677,66 +1535,173 @@
         }
 
         // ============================================
-        // EDIT MODE
+        // ODD/EVEN & DETAILS MODE
         // ============================================
 
-        function toggleEditMode() {
-            state.isEditMode = !state.isEditMode;
+        function toggleOddEven() {
+            const toggle = document.getElementById('oddEvenToggle');
+            toggle.classList.toggle('active');
+            state.isOddEvenMode = toggle.classList.contains('active');
+            generateStyleEditors();
+            updatePreview();
+        }
+
+        function toggleDetails() {
+            const toggle = document.getElementById('detailsToggle');
+            toggle.classList.toggle('active');
+            state.isDetailsMode = toggle.classList.contains('active');
             
-            const previewFrame = document.getElementById('previewFrame');
-            const editTextarea = document.getElementById('editTextarea');
-            const editBtn = document.getElementById('editBtn');
+            const summaryInputs = document.getElementById('summaryInputs');
+            summaryInputs.style.display = state.isDetailsMode ? 'block' : 'none';
             
-            if (state.isEditMode) {
-                editTextarea.value = previewFrame.innerHTML;
-                previewFrame.classList.add('hidden');
-                editTextarea.classList.remove('hidden');
-                editBtn.textContent = 'Preview';
-                editBtn.classList.remove('btn-secondary');
-                editBtn.classList.add('btn-success');
-            } else {
-                previewFrame.innerHTML = editTextarea.value;
-                editTextarea.classList.add('hidden');
-                previewFrame.classList.remove('hidden');
-                editBtn.textContent = 'Edit HTML';
-                editBtn.classList.remove('btn-success');
-                editBtn.classList.add('btn-secondary');
+            updateSummaryInputs();
+            updatePreview();
+        }
+
+        function updateSummaryInputs() {
+            const container = document.getElementById('summaryInputs');
+            container.innerHTML = '';
+            
+            if (!state.isDetailsMode) return;
+            
+            for (let i = 0; i < state.textBlocks.length; i++) {
+                const div = document.createElement('div');
+                div.className = 'summary-input-group';
+                div.innerHTML = `
+                    <label>Block ${i + 1}:</label>
+                    <input type="text" value="${state.summaryTexts[i] || `Section ${i + 1}`}" onchange="updateSummaryText(${i}, this.value)">
+                `;
+                container.appendChild(div);
             }
         }
 
-        function updateFromEdit() {
-            // Live update if needed
+        function updateSummaryText(index, value) {
+            state.summaryTexts[index] = value;
+            updatePreview();
         }
 
         // ============================================
-        // STYLE GENERATION
+        // IMAGE HANDLING
         // ============================================
 
-        function generateInlineStyle(elementKey) {
-            const styles = state.templateStyles[elementKey];
-            if (!styles) return '';
+        function handleImageUpload(event) {
+            const file = event.target.files[0];
+            if (!file) return;
             
-            return Object.entries(styles)
-                .map(([prop, value]) => `${prop}: ${value}`)
-                .join('; ');
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                state.imageData = e.target.result;
+                updatePreview();
+            };
+            reader.readAsDataURL(file);
+        }
+
+        function removeImage() {
+            state.imageData = '';
+            updatePreview();
         }
 
         // ============================================
-        // HTML GENERATION
+        // PREVIEW GENERATION
         // ============================================
 
-        function generatePillsHTML() {
-            if (state.pills.length === 0) return '';
+        function updatePreview() {
+            state.cardName = document.getElementById('cardNameInput').value;
             
-            return state.pills.map(pill => {
-                const style = `background: ${pill.bgColor}; color: ${pill.textColor}; border: 1px solid ${pill.borderColor}; border-radius: 16px; padding: 0.25rem 0.75rem; font-size: 0.8rem; display: inline-flex; align-items: center; min-height: 24px; line-height: 1.4; margin: 0 4px 4px 0; text-decoration: none;`;
-                
-                if (pill.link) {
-                    return `<a href="${pill.link}" style="${style}" target="_blank">${pill.text}</a>`;
-                }
-                return `<span style="${style}">${pill.text}</span>`;
-            }).join('\n            ');
+            if (!state.hasContent && state.textBlocks.length === 0) {
+                document.getElementById('previewFrame').innerHTML = '<p style="color: #666; text-align: center; padding: 40px;">Paste content to see preview</p>';
+                return;
+            }
+            
+            const html = generatePreviewHTML();
+            
+            if (state.isEditMode) {
+                document.getElementById('editTextarea').value = html;
+            } else {
+                document.getElementById('previewFrame').innerHTML = html;
+            }
         }
+
+        function generatePreviewHTML() {
+            const template = templatePresets[state.currentTemplate];
+            const structure = template?.structure || 'vertical';
+            
+            if (structure === 'horizontal') {
+                return generateHorizontalLayout();
+            } else {
+                return generateVerticalLayout();
+            }
+        }
+
+function generateVerticalLayout() {
+    const rootStyle = generateInlineStyle('root_container', { 'font-family': state.globalFont });
+    const imageStyle = generateInlineStyle('image_container', { 
+        'background-image': state.imageData ? `url(${state.imageData})` : 'none' 
+    });
+    const contentStyle = generateInlineStyle('content_container');
+    const headerStyle = generateInlineStyle('header_container');
+    const cardNameStyle = generateInlineStyle('card_name');
+    const textContainerStyle = generateInlineStyle('text_container');
+    const footerStyle = generateInlineStyle('footer_container');
+    const footerTextStyle = generateInlineStyle('footer_text');
+    
+    const imageHTML = state.imageData ? `<div style="${imageStyle}"></div>` : '';
+    const blocksHTML = generateTextBlocksHTML();
+    const pillsHTML = generatePillsHTML();
+    
+    return `<div style="${rootStyle}">
+    ${imageHTML}
+    <div style="${contentStyle}">
+        <div style="${headerStyle}">
+            <div style="${cardNameStyle}">${state.cardName}</div>
+            <div style="margin-top: 0.5rem;">
+                ${pillsHTML}
+            </div>
+        </div>
+        <div style="${textContainerStyle}">
+            ${blocksHTML}
+        </div>
+        <div style="${footerStyle}">
+            <span style="${footerTextStyle}">From <a href="https://grimtze.github.io/logarhythm/logarhythm.html">RisuAI</a>, with <a href="https://grimtze.github.io/logarhythm/logarhythm.html">Logarhythm 𝄞</a></span>
+        </div>
+    </div>
+</div>`;
+}
+function generateHorizontalLayout() {
+    const rootStyle = generateInlineStyle('root_container', { 'font-family': state.globalFont });
+    const imageStyle = generateInlineStyle('image_container', { 
+        'background-image': state.imageData ? `url(${state.imageData})` : "url('https://placehold.co/600x400/EEE/31343C')" 
+    });
+    const contentStyle = generateInlineStyle('content_container');
+    const headerStyle = generateInlineStyle('header_container');
+    const cardNameStyle = generateInlineStyle('card_name');
+    const textContainerStyle = generateInlineStyle('text_container');
+    const footerStyle = generateInlineStyle('footer_container');
+    const footerTextStyle = generateInlineStyle('footer_text');
+    
+    const blocksHTML = generateTextBlocksHTML();
+    const pillsHTML = generatePillsHTML();
+    
+    return `<div style="${rootStyle}">
+    <div style="${imageStyle}"></div>
+    <div style="${contentStyle}">
+        <div style="${headerStyle}">
+            <div>
+                <div style="${cardNameStyle}">${state.cardName}</div>
+                <div style="margin-top: 0.5rem;">
+                    ${pillsHTML}
+                </div>
+            </div>
+        </div>
+        <div style="${textContainerStyle}">
+            ${blocksHTML}
+        </div>
+        <div style="${footerStyle}">
+            <span style="${footerTextStyle}">From RisuAI, with Logarhythm𝄞</span>
+        </div>
+    </div>
+</div>`;
+}
 
         function generateTextBlocksHTML() {
             let blocksHTML = '';
@@ -1744,20 +1709,18 @@
             for (let i = 0; i < state.textBlocks.length; i++) {
                 const isEven = i % 2 === 1;
                 const blockStyleKey = state.isOddEvenMode && isEven ? 'text_block_even' : 'text_block';
-                const blockStyle = generateInlineStyle(blockStyleKey) || generateInlineStyle('text_block');
+                const blockStyle = generateInlineStyle(blockStyleKey);
                 
                 let blockContent = '';
                 
                 for (const element of state.textBlocks[i]) {
-                    const paraStyleKey = state.isOddEvenMode && isEven ? 'paragraph_even' : 'paragraph';
-                    const paraStyle = generateInlineStyle(paraStyleKey) || generateInlineStyle('paragraph');
+                    const paraStyle = generateInlineStyle('paragraph');
                     
                     if (element.type === 'paragraph') {
                         blockContent += `<p style="${paraStyle}">${element.content}</p>\n`;
                     } else if (element.type === 'quote') {
-                        const baseQuoteKey = element.quoteType === 'smallquote' ? 'smallquote' : 'bigquote';
-                        const quoteStyleKey = state.isOddEvenMode && isEven ? `${baseQuoteKey}_even` : baseQuoteKey;
-                        const quoteStyle = generateInlineStyle(quoteStyleKey) || generateInlineStyle(baseQuoteKey);
+                        const quoteStyleKey = element.quoteType === 'smallquote' ? 'smallquote' : 'bigquote';
+                        const quoteStyle = generateInlineStyle(quoteStyleKey);
                         blockContent += `<p style="${paraStyle}; ${quoteStyle}">${element.content}</p>\n`;
                     }
                 }
@@ -1781,105 +1744,98 @@
             return blocksHTML;
         }
 
-        function generateFullHTML() {
-            const preset = templatePresets[state.currentTemplate];
-            const isHorizontal = preset?.structure === 'horizontal';
+        function generateInlineStyle(elementKey, extraStyles = {}) {
+            const styles = { ...state.templateStyles[elementKey], ...extraStyles };
             
-            const rootStyle = generateInlineStyle('root_container');
-            const imageStyle = generateInlineStyle('image_container');
-            const contentStyle = generateInlineStyle('content_container');
-            const headerStyle = generateInlineStyle('header_container');
-            const cardNameStyle = generateInlineStyle('card_name');
-            const textContainerStyle = generateInlineStyle('text_container');
-            const footerStyle = generateInlineStyle('footer_container');
-            const footerTextStyle = generateInlineStyle('footer_text');
+            return Object.entries(styles)
+                .filter(([key, value]) => value !== undefined && value !== null && value !== '')
+                .map(([key, value]) => `${key}: ${value}`)
+                .join('; ');
+        }
+
+        // ============================================
+        // EDIT MODE
+        // ============================================
+
+        function toggleEditMode() {
+            state.isEditMode = !state.isEditMode;
             
-            const cardName = document.getElementById('cardNameInput').value || 'Character Name';
-            const pillsHTML = generatePillsHTML();
-            const textBlocksHTML = generateTextBlocksHTML();
+            const previewFrame = document.getElementById('previewFrame');
+            const editTextarea = document.getElementById('editTextarea');
+            const editBtn = document.getElementById('editBtn');
+            const previewTitle = document.getElementById('previewTitle');
             
-            const imageHTML = state.imageData 
-                ? `<div style="${imageStyle}; background-image: url('${state.imageData}');"></div>` 
-                : `<div style="${imageStyle}; background: #333;"></div>`;
-            
-            let html = '';
-            
-            if (isHorizontal) {
-                html = `
-<div style="font-family: ${state.globalFont}; ${rootStyle}">
-    ${imageHTML}
-    <div style="${contentStyle}">
-        <div style="${headerStyle}">
-            <h2 style="${cardNameStyle}">${cardName}</h2>
-            <div style="display: flex; flex-wrap: wrap; gap: 4px;">
-                ${pillsHTML}
-            </div>
-        </div>
-        <div style="${textContainerStyle}">
-            ${textBlocksHTML}
-        </div>
-        <div style="${footerStyle}">
-            <span style="${footerTextStyle}">Generated with Text Formatter</span>
-        </div>
-    </div>
-</div>`;
+            if (state.isEditMode) {
+                previewFrame.classList.add('hidden');
+                editTextarea.classList.remove('hidden');
+                editTextarea.value = previewFrame.innerHTML;
+                editBtn.textContent = 'Preview';
+                previewTitle.textContent = 'Edit HTML';
             } else {
-                html = `
-<div style="font-family: ${state.globalFont}; ${rootStyle}">
-    ${imageHTML}
-    <div style="${contentStyle}">
-        <div style="${headerStyle}">
-            <h2 style="${cardNameStyle}">${cardName}</h2>
-            <div style="display: flex; flex-wrap: wrap; gap: 4px; justify-content: center; margin-top: 8px;">
-                ${pillsHTML}
-            </div>
-        </div>
-        <div style="${textContainerStyle}">
-            ${textBlocksHTML}
-        </div>
-        <div style="${footerStyle}">
-            <span style="${footerTextStyle}">Generated with Text Formatter</span>
-        </div>
-    </div>
-</div>`;
+                previewFrame.classList.remove('hidden');
+                editTextarea.classList.add('hidden');
+                editBtn.textContent = 'Edit HTML';
+                previewTitle.textContent = 'Preview';
+                previewFrame.innerHTML = editTextarea.value;
             }
-            
-            return html.trim();
+        }
+
+        function updateFromEdit() {
+            // Changes will be applied when switching back to preview
         }
 
         // ============================================
-        // PREVIEW & OUTPUT
+        // OUTPUT GENERATION
         // ============================================
-
-        function updatePreview() {
-            const preview = document.getElementById('previewFrame');
-            
-            if (!state.hasContent && state.pills.length === 0) {
-                preview.innerHTML = '<p style="color: #666; text-align: center; padding: 40px;">Paste content to see preview</p>';
-                return;
-            }
-            
-            preview.innerHTML = generateFullHTML();
-        }
 
         function generateOutput() {
-            const output = generateFullHTML();
+            let output;
+            
+            if (state.isEditMode) {
+                output = document.getElementById('editTextarea').value;
+            } else {
+                output = document.getElementById('previewFrame').innerHTML;
+            }
+            
+            output = formatHTML(output);
             document.getElementById('outputTextarea').value = output;
+        }
+
+        function formatHTML(html) {
+            let formatted = '';
+            let indent = 0;
+            const tab = '    ';
+            
+            html = html.replace(/>\s*</g, '>\n<');
+            const lines = html.split('\n');
+            
+            for (let line of lines) {
+                line = line.trim();
+                if (!line) continue;
+                
+                if (line.startsWith('</')) {
+                    indent = Math.max(0, indent - 1);
+                }
+                
+                formatted += tab.repeat(indent) + line + '\n';
+                
+                if (line.startsWith('<') && !line.startsWith('</') && !line.endsWith('/>') && !line.includes('</')) {
+                    const voidElements = ['br', 'hr', 'img', 'input', 'meta', 'link'];
+                    const tagMatch = line.match(/<(\w+)/);
+                    if (tagMatch && !voidElements.includes(tagMatch[1].toLowerCase())) {
+                        indent++;
+                    }
+                }
+            }
+            
+            return formatted.trim();
         }
 
         async function copyOutput(event) {
             const output = document.getElementById('outputTextarea').value;
             
             try {
-                const htmlBlob = new Blob([output], { type: 'text/html' });
-                const textBlob = new Blob([output], { type: 'text/plain' });
-                
-                const clipboardItem = new ClipboardItem({
-                    'text/html': htmlBlob,
-                    'text/plain': textBlob
-                });
-                
-                await navigator.clipboard.write([clipboardItem]);
+                await navigator.clipboard.writeText(output);
                 
                 const btn = event.target;
                 const originalText = btn.textContent;
@@ -1893,37 +1849,257 @@
                     btn.classList.add('btn-primary');
                 }, 2000);
             } catch (err) {
-                try {
-                    await navigator.clipboard.writeText(output);
-                    const btn = event.target;
-                    btn.textContent = 'Copied (text)!';
-                    setTimeout(() => { btn.textContent = 'Copy to Clipboard'; }, 2000);
-                } catch (fallbackErr) {
-                    console.error('Failed to copy:', fallbackErr);
-                    alert('Failed to copy to clipboard.');
-                }
+                console.error('Failed to copy:', err);
+                alert('Failed to copy to clipboard.');
             }
         }
+		// ============================================
+// PILL MANAGEMENT
+// ============================================
 
+function addPill(text = '', bgColor = '#000000', textColor = '#f8f8f2', borderColor = '#4b5563') {
+    state.pills.push({
+        text: text || 'New Pill',
+        bgColor: bgColor,
+        textColor: textColor,
+        borderColor: borderColor
+    });
+    renderPills();
+    updatePreview();
+}
+
+function removePill(index) {
+    state.pills.splice(index, 1);
+    renderPills();
+    updatePreview();
+}
+
+function updatePill(index, field, value) {
+    if (state.pills[index]) {
+        state.pills[index][field] = value;
+        renderPills();
+        updatePreview();
+    }
+}
+
+function renderPills() {
+    const container = document.getElementById('pillsContainer');
+    
+    if (state.pills.length === 0) {
+        container.innerHTML = '<p style="font-size: 0.8rem; color: #666;">No pills added yet. Click "+ Add Pill" to create one.</p>';
+        return;
+    }
+    
+    container.innerHTML = state.pills.map((pill, index) => `
+        <div class="pill-editor">
+            <input type="text" value="${pill.text}" placeholder="Pill text..." 
+                onchange="updatePill(${index}, 'text', this.value)">
+            
+            <div class="pill-editor-colors">
+                <label>BG</label>
+                <input type="color" value="${pill.bgColor}" 
+                    onchange="updatePill(${index}, 'bgColor', this.value)" title="Background Color">
+            </div>
+            
+            <div class="pill-editor-colors">
+                <label>Text</label>
+                <input type="color" value="${pill.textColor}" 
+                    onchange="updatePill(${index}, 'textColor', this.value)" title="Text Color">
+            </div>
+            
+            <div class="pill-editor-colors">
+                <label>Border</label>
+                <input type="color" value="${pill.borderColor}" 
+                    onchange="updatePill(${index}, 'borderColor', this.value)" title="Border Color">
+            </div>
+            
+            <div class="pill-preview" style="background: ${pill.bgColor}; color: ${pill.textColor}; border: 1px solid ${pill.borderColor};">
+                ${pill.text}
+            </div>
+            
+            <button class="btn btn-danger btn-small" onclick="removePill(${index})" style="padding: 4px 8px;">×</button>
+        </div>
+    `).join('');
+}
+
+function generatePillsHTML() {
+    if (state.pills.length === 0) return '';
+    
+    return state.pills.map(pill => {
+        const style = `background: ${pill.bgColor}; color: ${pill.textColor}; border: 1px solid ${pill.borderColor}; border-radius: 16px; padding: 0.25rem 0.75rem; font-size: 0.8rem; display: inline-block; margin: 0 4px 4px 0;`;
+        return `<span style="${style}">${pill.text}</span>`;
+    }).join('\n            ');
+}
+// ============================================
+// GRADIENT & BORDER HELPERS
+// ============================================
+
+function parseGradientAngle(value) {
+    if (!value) return 90;
+    const match = value.match(/(\d+)deg/);
+    return match ? parseInt(match[1]) : 90;
+}
+
+function parseGradientStops(value) {
+    if (!value || !value.includes('gradient')) {
+        return [
+            { color: '#000000', position: 0 },
+            { color: '#ffffff', position: 100 }
+        ];
+    }
+    
+    const stops = [];
+    const regex = /(#[a-fA-F0-9]{6}|#[a-fA-F0-9]{3}|rgba?\([^)]+\))\s*(\d+)?%?/g;
+    let match;
+    let index = 0;
+    
+    while ((match = regex.exec(value)) !== null) {
+        stops.push({
+            color: match[1].startsWith('#') ? match[1] : '#000000',
+            position: match[2] ? parseInt(match[2]) : (index === 0 ? 0 : 100)
+        });
+        index++;
+    }
+    
+    if (stops.length < 2) {
+        return [
+            { color: '#000000', position: 0 },
+            { color: '#ffffff', position: 100 }
+        ];
+    }
+    
+    return stops;
+}
+
+function generateGradientStops(elementKey, prop, value) {
+    const stops = parseGradientStops(value);
+    
+    return stops.map((stop, index) => `
+        <div class="gradient-stop">
+            <input type="color" value="${stop.color}" onchange="updateGradient('${elementKey}', '${prop}')">
+            <input type="number" value="${stop.position}" min="0" max="100" onchange="updateGradient('${elementKey}', '${prop}')">
+            <span>%</span>
+            ${stops.length > 2 ? `<button class="btn btn-danger btn-small" style="padding: 2px 6px;" onclick="removeGradientStop('${elementKey}', '${prop}', ${index})">×</button>` : ''}
+        </div>
+    `).join('');
+}
+
+function toggleBackgroundType(elementKey, prop, type, container) {
+    const solidEditor = container.querySelector('.solid-color-editor');
+    const gradientEditor = container.querySelector('.gradient-editor');
+    
+    if (type === 'solid') {
+        solidEditor.style.display = '';
+        gradientEditor.style.display = 'none';
+        updateTemplateStyle(elementKey, prop, '#000000');
+    } else {
+        solidEditor.style.display = 'none';
+        gradientEditor.style.display = '';
+        updateGradient(elementKey, prop);
+    }
+}
+
+function updateGradient(elementKey, prop) {
+    const editor = document.querySelector(`.gradient-editor[data-element="${elementKey}"][data-prop="${prop}"]`);
+    if (!editor) return;
+    
+    const type = editor.querySelector('.gradient-type').value;
+    const angle = editor.querySelector('.gradient-angle')?.value || 90;
+    const stopElements = editor.querySelectorAll('.gradient-stop');
+    
+    const stops = [];
+    stopElements.forEach(stopEl => {
+        const color = stopEl.querySelector('input[type="color"]').value;
+        const position = stopEl.querySelector('input[type="number"]').value;
+        stops.push(`${color} ${position}%`);
+    });
+    
+    let gradientValue;
+    if (type === 'linear') {
+        gradientValue = `linear-gradient(${angle}deg, ${stops.join(', ')})`;
+        editor.querySelector('.gradient-direction').style.display = '';
+    } else {
+        gradientValue = `radial-gradient(circle, ${stops.join(', ')})`;
+        editor.querySelector('.gradient-direction').style.display = 'none';
+    }
+    
+    // Update preview
+    editor.querySelector('.gradient-preview').style.background = gradientValue;
+    
+    // Update state
+    updateTemplateStyle(elementKey, prop, gradientValue);
+}
+
+function addGradientStop(elementKey, prop) {
+    const currentValue = state.templateStyles[elementKey]?.[prop] || '';
+    const stops = parseGradientStops(currentValue);
+    
+    // Add new stop in the middle
+    const newPosition = stops.length > 0 ? Math.round((stops[stops.length - 1].position + stops[0].position) / 2) : 50;
+    stops.push({ color: '#888888', position: newPosition });
+    stops.sort((a, b) => a.position - b.position);
+    
+    // Rebuild gradient
+    const editor = document.querySelector(`.gradient-editor[data-element="${elementKey}"][data-prop="${prop}"]`);
+    const type = editor.querySelector('.gradient-type').value;
+    const angle = editor.querySelector('.gradient-angle')?.value || 90;
+    
+    const stopsStr = stops.map(s => `${s.color} ${s.position}%`).join(', ');
+    const gradientValue = type === 'linear' 
+        ? `linear-gradient(${angle}deg, ${stopsStr})`
+        : `radial-gradient(circle, ${stopsStr})`;
+    
+    updateTemplateStyle(elementKey, prop, gradientValue);
+    generateStyleEditors(); // Rebuild to show new stop
+}
+
+function removeGradientStop(elementKey, prop, index) {
+    const currentValue = state.templateStyles[elementKey]?.[prop] || '';
+    const stops = parseGradientStops(currentValue);
+    
+    if (stops.length <= 2) return; // Minimum 2 stops
+    
+    stops.splice(index, 1);
+    
+    const editor = document.querySelector(`.gradient-editor[data-element="${elementKey}"][data-prop="${prop}"]`);
+    const type = editor.querySelector('.gradient-type').value;
+    const angle = editor.querySelector('.gradient-angle')?.value || 90;
+    
+    const stopsStr = stops.map(s => `${s.color} ${s.position}%`).join(', ');
+    const gradientValue = type === 'linear' 
+        ? `linear-gradient(${angle}deg, ${stopsStr})`
+        : `radial-gradient(circle, ${stopsStr})`;
+    
+    updateTemplateStyle(elementKey, prop, gradientValue);
+    generateStyleEditors();
+}
+
+function updateBorderStyle(elementKey, prop, container) {
+    const width = container.querySelector('input[type="number"]').value;
+    const style = container.querySelector('select').value;
+    const color = container.querySelector('input[type="color"]').value;
+    
+    const borderValue = style === 'none' ? 'none' : `${width}px ${style} ${color}`;
+    updateTemplateStyle(elementKey, prop, borderValue);
+}
         // ============================================
         // INITIALIZATION
         // ============================================
 
-        document.getElementById('presetSelect').addEventListener('change', function() {
-            if (this.value) {
-                loadTemplate(this.value);
-                this.value = '';
-            }
-        });
+        function init() {
+            loadTemplate('vertical_dark');
+            updatePresetDropdown();
+			renderPills(); 
+            
+            document.getElementById('presetSelect').addEventListener('change', function() {
+                if (this.value) {
+                    loadTemplate(this.value);
+                    this.value = '';
+                }
+            });
+        }
 
-        document.getElementById('cardNameInput').addEventListener('input', function() {
-            state.cardName = this.value;
-        });
-
-        // Initialize
-        loadTemplate('vertical_dark');
-        updatePresetDropdown();
-        renderPills();
+        init();
     </script>
 </body>
 </html>
