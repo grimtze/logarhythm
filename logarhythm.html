@@ -24,7 +24,6 @@
             overflow: hidden;
         }
 
-        /* Left Panel - Editor */
         .editor-panel {
             width: 45%;
             min-width: 400px;
@@ -53,7 +52,6 @@
             padding: 16px;
         }
 
-        /* Sections */
         .section {
             background: #222;
             border-radius: 8px;
@@ -99,7 +97,6 @@
             display: none;
         }
 
-        /* Buttons */
         .btn-group {
             display: flex;
             gap: 8px;
@@ -116,62 +113,19 @@
             transition: all 0.2s;
         }
 
-        .btn-primary {
-            background: #4a9eff;
-            color: #fff;
-        }
+        .btn-primary { background: #4a9eff; color: #fff; }
+        .btn-primary:hover { background: #3a8eef; }
+        .btn-secondary { background: #444; color: #e0e0e0; }
+        .btn-secondary:hover { background: #555; }
+        .btn-warning { background: #ff9f43; color: #000; }
+        .btn-warning:hover { background: #ffaf53; }
+        .btn-danger { background: #ff6b6b; color: #fff; }
+        .btn-danger:hover { background: #ff5252; }
+        .btn-success { background: #51cf66; color: #000; }
+        .btn-success:hover { background: #40bf55; }
+        .btn:disabled { opacity: 0.5; cursor: not-allowed; }
+        .btn-small { padding: 6px 12px; font-size: 0.8rem; }
 
-        .btn-primary:hover {
-            background: #3a8eef;
-        }
-
-        .btn-secondary {
-            background: #444;
-            color: #e0e0e0;
-        }
-
-        .btn-secondary:hover {
-            background: #555;
-        }
-
-        .btn-warning {
-            background: #ff9f43;
-            color: #000;
-        }
-
-        .btn-warning:hover {
-            background: #ffaf53;
-        }
-
-        .btn-danger {
-            background: #ff6b6b;
-            color: #fff;
-        }
-
-        .btn-danger:hover {
-            background: #ff5252;
-        }
-
-        .btn-success {
-            background: #51cf66;
-            color: #000;
-        }
-
-        .btn-success:hover {
-            background: #40bf55;
-        }
-
-        .btn:disabled {
-            opacity: 0.5;
-            cursor: not-allowed;
-        }
-
-        .btn-small {
-            padding: 6px 12px;
-            font-size: 0.8rem;
-        }
-
-        /* Form Controls */
         .form-group {
             display: flex;
             flex-direction: column;
@@ -223,17 +177,6 @@
             background: transparent;
         }
 
-        .color-input-group {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .color-input-group input[type="text"] {
-            flex: 1;
-        }
-
-        /* Checkbox/Toggle */
         .toggle-group {
             display: flex;
             align-items: center;
@@ -274,7 +217,6 @@
             font-size: 0.85rem;
         }
 
-        /* Right Panel - Preview */
         .preview-panel {
             flex: 1;
             background: #111;
@@ -308,7 +250,6 @@
             min-height: 200px;
         }
 
-        /* Edit Mode */
         .edit-textarea {
             width: 100%;
             height: 100%;
@@ -324,7 +265,6 @@
             resize: vertical;
         }
 
-        /* Output Section */
         .output-section {
             border-top: 1px solid #333;
             padding: 16px 20px;
@@ -345,7 +285,6 @@
             margin-bottom: 12px;
         }
 
-        /* Style Editor */
         .style-property {
             display: flex;
             flex-direction: column;
@@ -372,12 +311,6 @@
             flex: 1;
         }
 
-        .unit-select {
-            width: 60px !important;
-            flex: none !important;
-        }
-
-        /* Quote Color Mapping */
         .quote-mapping {
             display: flex;
             align-items: center;
@@ -398,11 +331,6 @@
             flex: 1;
         }
 
-        .quote-mapping .btn {
-            flex: none;
-        }
-
-        /* Modal */
         .modal-overlay {
             position: fixed;
             top: 0;
@@ -443,52 +371,10 @@
             justify-content: flex-end;
         }
 
-        /* Details/Summary styling in preview */
-        .preview-frame details {
-            margin: 8px 0;
+        .hidden {
+            display: none !important;
         }
 
-        .preview-frame summary {
-            cursor: pointer;
-            padding: 8px;
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 4px;
-        }
-
-        /* Scrollbar */
-        ::-webkit-scrollbar {
-            width: 8px;
-            height: 8px;
-        }
-
-        ::-webkit-scrollbar-track {
-            background: #1a1a1a;
-        }
-
-        ::-webkit-scrollbar-thumb {
-            background: #444;
-            border-radius: 4px;
-        }
-
-        ::-webkit-scrollbar-thumb:hover {
-            background: #555;
-        }
-
-        /* Subsection for odd/even */
-        .subsection {
-            margin-top: 12px;
-            padding-top: 12px;
-            border-top: 1px dashed #444;
-        }
-
-        .subsection-title {
-            font-size: 0.8rem;
-            color: #888;
-            margin-bottom: 12px;
-            font-weight: 500;
-        }
-
-        /* Summary inputs for details mode */
         .summary-input-group {
             display: flex;
             align-items: center;
@@ -509,13 +395,6 @@
             flex: 1;
         }
 
-        /* Header fields */
-        .header-fields {
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-        }
-
         .image-controls {
             display: flex;
             gap: 8px;
@@ -524,6 +403,113 @@
 
         .image-controls input[type="file"] {
             display: none;
+        }
+		
+		.gradient-editor {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: 8px;
+    background: #333;
+    border-radius: 4px;
+    margin-top: 4px;
+}
+.pill-editor {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px;
+    background: #2a2a2a;
+    border-radius: 6px;
+    margin-bottom: 8px;
+    flex-wrap: wrap;
+}
+
+.pill-editor input[type="text"] {
+    flex: 1;
+    min-width: 100px;
+}
+
+.pill-editor input[type="color"] {
+    width: 32px;
+    height: 28px;
+}
+
+.pill-editor-colors {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.pill-editor-colors label {
+    font-size: 0.7rem;
+    color: #888;
+}
+
+.pill-preview {
+    padding: 4px 12px;
+    border-radius: 16px;
+    font-size: 0.8rem;
+    white-space: nowrap;
+}
+.gradient-stop {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.gradient-stop input[type="color"] {
+    width: 32px;
+    height: 24px;
+}
+
+.gradient-stop input[type="number"] {
+    width: 60px;
+}
+
+.gradient-preview {
+    height: 24px;
+    border-radius: 4px;
+    border: 1px solid #555;
+    margin-top: 4px;
+}
+
+.border-editor {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.border-editor input[type="number"] {
+    width: 60px;
+}
+
+.border-editor select {
+    width: 100px;
+}
+
+.border-editor input[type="color"] {
+    width: 32px;
+    height: 28px;
+}
+
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #1a1a1a;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #444;
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #555;
         }
     </style>
 </head>
@@ -535,7 +521,7 @@
                 <h2>Editor</h2>
             </div>
             <div class="panel-content">
-                <!-- Paste/Add Section -->
+                <!-- Import Data Section -->
                 <div class="section">
                     <div class="section-header" onclick="toggleSection(this)">
                         <h3>📋 Import Data</h3>
@@ -546,36 +532,42 @@
                             <button class="btn btn-primary" onclick="handlePaste()">Paste</button>
                             <button class="btn btn-secondary" onclick="handleAdd()" id="addBtn" disabled>Add</button>
                         </div>
+                        <div class="form-group" style="margin-top: 12px;">
+                            <label>Or paste HTML here manually:</label>
+                            <textarea id="manualPasteInput" rows="4" placeholder="Paste your HTML content here..."></textarea>
+                            <button class="btn btn-secondary btn-small" onclick="handleManualPaste()" style="margin-top: 8px;">Import from textarea</button>
+                        </div>
                     </div>
                 </div>
 
                 <!-- Header Data Section -->
-                <div class="section">
-                    <div class="section-header" onclick="toggleSection(this)">
-                        <h3>📝 Header Data</h3>
-                        <span class="toggle-icon">▼</span>
-                    </div>
-                    <div class="section-content">
-                        <div class="header-fields">
-                            <div class="form-group">
-                                <label>Card Name</label>
-                                <input type="text" id="cardNameInput" placeholder="Character name..." oninput="updatePreview()">
-                            </div>
-                            <div class="form-group">
-                                <label>LLM Used</label>
-                                <input type="text" id="llmUsedInput" placeholder="Model name..." oninput="updatePreview()">
-                            </div>
-                            <div class="form-group">
-                                <label>Profile Image</label>
-                                <div class="image-controls">
-                                    <button class="btn btn-secondary btn-small" onclick="document.getElementById('imageUpload').click()">Upload</button>
-                                    <button class="btn btn-danger btn-small" onclick="removeImage()">Remove</button>
-                                    <input type="file" id="imageUpload" accept="image/*" onchange="handleImageUpload(event)">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+ <div class="section">
+    <div class="section-header" onclick="toggleSection(this)">
+        <h3>📝 Header Data</h3>
+        <span class="toggle-icon">▼</span>
+    </div>
+    <div class="section-content">
+        <div class="form-group">
+            <label>Card Name</label>
+            <input type="text" id="cardNameInput" placeholder="Character name..." oninput="updatePreview()">
+        </div>
+        
+        <div class="form-group">
+            <label>Pills / Badges</label>
+            <div id="pillsContainer"></div>
+            <button class="btn btn-secondary btn-small" onclick="addPill()" style="margin-top: 8px;">+ Add Pill</button>
+        </div>
+        
+        <div class="form-group">
+            <label>Profile Image</label>
+            <div class="image-controls">
+                <button class="btn btn-secondary btn-small" onclick="document.getElementById('imageUpload').click()">Upload</button>
+                <button class="btn btn-danger btn-small" onclick="removeImage()">Remove</button>
+                <input type="file" id="imageUpload" accept="image/*" onchange="handleImageUpload(event)">
+            </div>
+        </div>
+    </div>
+</div>
 
                 <!-- Search & Replace Section -->
                 <div class="section">
@@ -612,7 +604,7 @@
                     </div>
                 </div>
 
-                <!-- Details/Summary Section -->
+                <!-- Collapsible Sections -->
                 <div class="section">
                     <div class="section-header" onclick="toggleSection(this)">
                         <h3>📂 Collapsible Sections</h3>
@@ -623,13 +615,11 @@
                             <div class="toggle" id="detailsToggle" onclick="toggleDetails()"></div>
                             <span class="toggle-label">Wrap blocks in &lt;details&gt;</span>
                         </div>
-                        <div id="summaryInputs" style="margin-top: 12px; display: none;">
-                            <!-- Summary inputs will be added dynamically -->
-                        </div>
+                        <div id="summaryInputs" style="margin-top: 12px; display: none;"></div>
                     </div>
                 </div>
 
-                <!-- Global Style Section -->
+                <!-- Global Styles Section -->
                 <div class="section">
                     <div class="section-header" onclick="toggleSection(this)">
                         <h3>🌐 Global Styles</h3>
@@ -638,17 +628,13 @@
                     <div class="section-content">
                         <div class="form-group">
                             <label>Font Family</label>
-                            <select id="globalFont" onchange="updatePreview()">
+                            <select id="globalFont" onchange="updateGlobalFont()">
                                 <option value="'Segoe UI', Roboto, Arial, sans-serif">Segoe UI / Roboto</option>
                                 <option value="Arial, Helvetica, sans-serif">Arial</option>
                                 <option value="Georgia, 'Times New Roman', serif">Georgia</option>
                                 <option value="'Times New Roman', Times, serif">Times New Roman</option>
                                 <option value="'Courier New', Courier, monospace">Courier New</option>
                                 <option value="Verdana, Geneva, sans-serif">Verdana</option>
-                                <option value="Tahoma, Geneva, sans-serif">Tahoma</option>
-                                <option value="'Trebuchet MS', Helvetica, sans-serif">Trebuchet MS</option>
-                                <option value="Impact, Charcoal, sans-serif">Impact</option>
-                                <option value="'Comic Sans MS', cursive">Comic Sans MS</option>
                             </select>
                         </div>
                         <div class="toggle-group">
@@ -658,28 +644,31 @@
                     </div>
                 </div>
 
-                <!-- Style Sections - Generated dynamically -->
+                <!-- Style Editors (generated dynamically) -->
                 <div id="styleEditors"></div>
 
-                <!-- Presets Section -->
+                <!-- Templates & Presets Section -->
                 <div class="section">
                     <div class="section-header" onclick="toggleSection(this)">
-                        <h3>💾 Presets</h3>
+                        <h3>💾 Templates & Presets</h3>
                         <span class="toggle-icon">▼</span>
                     </div>
                     <div class="section-content">
                         <div class="form-group">
-                            <label>Load Preset</label>
-                            <select id="presetSelect" onchange="loadPreset()">
-                                <option value="">-- Select Preset --</option>
-                                <option value="dark">Dark Theme (Default)</option>
-                                <option value="light">Light Theme</option>
+                            <label>Load Template</label>
+                            <select id="presetSelect">
+                                <option value="">-- Select Template --</option>
                             </select>
                         </div>
+                        <div style="margin: 12px 0; padding: 12px; background: #2a2a2a; border-radius: 6px;">
+                            <p style="font-size: 0.8rem; color: #888; margin-bottom: 8px;">
+                                Current: <strong id="currentTemplateName">Vertical Dark</strong>
+                            </p>
+                        </div>
                         <div class="btn-group">
-                            <button class="btn btn-secondary" onclick="downloadPreset()">Download Current</button>
-                            <button class="btn btn-secondary" onclick="document.getElementById('presetUpload').click()">Upload Preset</button>
-                            <input type="file" id="presetUpload" accept=".json" style="display: none;" onchange="uploadPreset(event)">
+                            <button class="btn btn-success" onclick="downloadCurrentTemplate()">Download Template</button>
+                            <button class="btn btn-secondary" onclick="document.getElementById('templateUpload').click()">Upload Template</button>
+                            <input type="file" id="templateUpload" accept=".json" style="display: none;" onchange="uploadTemplate(event)">
                         </div>
                     </div>
                 </div>
@@ -704,7 +693,7 @@
                 <button class="btn btn-success" onclick="generateOutput()" style="margin-bottom: 12px;">Generate Output</button>
                 <textarea class="output-textarea" id="outputTextarea" readonly placeholder="Click 'Generate Output' to see the final HTML..."></textarea>
                 <div class="btn-group">
-                    <button class="btn btn-primary" onclick="copyOutput()">Copy to Clipboard</button>
+                    <button class="btn btn-primary" onclick="copyOutput(event)">Copy to Clipboard</button>
                 </div>
             </div>
         </div>
@@ -728,10 +717,9 @@
         // ============================================
         
         const state = {
-            midProcessData: null,
             textBlocks: [],
             cardName: '',
-            llmUsed: '',
+    pills: [], // ADD THIS - array of {text: '', color: '', bgColor: ''}
             imageData: '',
             hasContent: false,
             isEditMode: false,
@@ -741,314 +729,159 @@
             quoteColorMap: {},
             detectedColors: new Set(),
             searchReplaceBackup: null,
-            styles: {}
+            currentTemplate: 'vertical_dark',
+            templateStyles: {},
+            globalFont: "'Segoe UI', Roboto, Arial, sans-serif"
         };
 
         // ============================================
-        // STYLE DEFINITIONS
+        // QUOTE COLOR DEFINITIONS
+        // ============================================
+        
+        const QUOTE_COLORS = {
+            '#8BE9FD': 'smallquote',
+            '#FFB86C': 'bigquote'
+        };
+
+        const PARAGRAPH_COLORS = ['#F8F8F2', '#FFFFFF', '#E0E0E0', '#D4D4D4', '#CCCCCC'];
+
+        // ============================================
+        // TEMPLATE DEFINITIONS
         // ============================================
 
-        const styleDefinitions = {
-            output_container_style: {
-                label: 'Container',
-                properties: {
-                    background: { type: 'color', default: '#000000' },
-                    border: { type: 'border', default: { width: '0', style: 'solid', color: '#4b5563' } },
-                    'border-radius': { type: 'size', default: '12px' },
-                    padding: { type: 'size', default: '20px' },
-                    margin: { type: 'size', default: '1rem auto' },
-                    'max-width': { type: 'size', default: '600px' },
-                    'box-shadow': { type: 'text', default: '0px 4px 12px rgba(0,0,0,0.15)' }
-                }
-            },
-            output_header_style: {
-                label: 'Header',
-                properties: {
-                    background: { type: 'color', default: 'transparent' },
-                    padding: { type: 'size', default: '0' },
-                    margin: { type: 'size', default: '0 0 1rem 0' },
-                    'text-align': { type: 'select', options: ['left', 'center', 'right'], default: 'center' },
-                    'flex-direction': { type: 'select', options: ['row', 'column'], default: 'column' }
-                }
-            },
-            output_image_style: {
-                label: 'Profile Image',
-                properties: {
-                    width: { type: 'size', default: '80px' },
-                    height: { type: 'size', default: '80px' },
-                    'border-radius': { type: 'size', default: '50%' },
-                    border: { type: 'border', default: { width: '3px', style: 'solid', color: '#4b5563' } },
-                    'background-size': { type: 'select', options: ['cover', 'contain', 'auto'], default: 'cover' },
-                    'background-position': { type: 'text', default: 'center' },
-                    'background-repeat': { type: 'select', options: ['no-repeat', 'repeat', 'repeat-x', 'repeat-y'], default: 'no-repeat' }
-                }
-            },
-            output_card_name_style: {
-                label: 'Card Name',
-                properties: {
-                    color: { type: 'color', default: '#f8f8f2' },
-                    'font-size': { type: 'size', default: '1.5rem' },
-                    'font-weight': { type: 'select', options: ['400', '500', '600', '700'], default: '600' }
-                }
-            },
-            output_llm_used_style: {
-                label: 'LLM Badge',
-                properties: {
-                    background: { type: 'color', default: '#000000' },
-                    color: { type: 'color', default: '#f8f8f2' },
-                    border: { type: 'border', default: { width: '1px', style: 'solid', color: '#4b5563' } },
-                    'border-radius': { type: 'size', default: '16px' },
-                    padding: { type: 'size', default: '0.25rem 0.75rem' },
-                    'font-size': { type: 'size', default: '0.8rem' }
-                }
-            },
-            output_text_container_style: {
-                label: 'Text Container',
-                properties: {
-                    border: { type: 'border', default: { width: '1px 0 0 0', style: 'solid', color: '#4b5563' } },
-                    padding: { type: 'size', default: '1rem 0 0 0' },
-                    margin: { type: 'size', default: '0' }
-                }
-            },
-            output_text_block_style: {
-                label: 'Text Block',
-                isOddEven: true,
-                properties: {
-                    background: { type: 'color', default: 'transparent' },
-                    border: { type: 'border', default: { width: '0', style: 'solid', color: '#4b5563' } },
-                    'border-radius': { type: 'size', default: '0' },
-                    padding: { type: 'size', default: '0' },
-                    margin: { type: 'size', default: '0 0 1rem 0' }
-                }
-            },
-            output_text_paragraph_style: {
-                label: 'Paragraph',
-                isOddEven: true,
-                properties: {
-                    color: { type: 'color', default: '#f8f8f2' },
-                    'font-size': { type: 'size', default: '1rem' },
-                    'line-height': { type: 'text', default: '1.6' }
-                }
-            },
-            output_text_smallquote_style: {
-                label: 'Small Quote',
-                isOddEven: true,
-                properties: {
-                    color: { type: 'color', default: '#8BE9FD' },
-                    background: { type: 'color', default: 'transparent' },
-                    'font-style': { type: 'select', options: ['normal', 'italic'], default: 'normal' },
-                    padding: { type: 'size', default: '0' }
-                }
-            },
-            output_text_bigquote_style: {
-                label: 'Big Quote',
-                isOddEven: true,
-                properties: {
-                    color: { type: 'color', default: '#FFB86C' },
-                    background: { type: 'color', default: 'transparent' },
-                    'font-style': { type: 'select', options: ['normal', 'italic'], default: 'normal' },
-                    padding: { type: 'size', default: '0' }
-                }
-            },
-            output_footer_style: {
-                label: 'Footer',
-                properties: {
-                    border: { type: 'border', default: { width: '1px 0 0 0', style: 'solid', color: '#4b5563' } },
-                    padding: { type: 'size', default: '0.75rem 0 0 0' },
-                    'text-align': { type: 'select', options: ['left', 'center', 'right'], default: 'center' }
-                }
-            },
-            output_footer_text_style: {
-                label: 'Footer Text',
-                properties: {
-                    color: { type: 'color', default: '#64748b' },
-                    'font-size': { type: 'size', default: '0.75rem' },
-                    opacity: { type: 'text', default: '0.7' }
-                }
+        const templateDefinitions = {
+            elements: {
+                root_container: { label: 'Root Container', description: 'The outermost wrapper' },
+                image_container: { label: 'Image Container', description: 'Wrapper for the profile image' },
+                content_container: { label: 'Content Container', description: 'Wrapper for all text content' },
+                header_container: { label: 'Header Container', description: 'Contains card name and pills' },
+                card_name: { label: 'Card Name', description: 'Character/card name text' },
+                text_container: { label: 'Text Container', description: 'Wrapper for all text blocks' },
+                text_block: { label: 'Text Block', description: 'Individual message block', supportsOddEven: true },
+                paragraph: { label: 'Paragraph', description: 'Normal narrative text', supportsOddEven: true },
+                smallquote: { label: 'Small Quote', description: 'Inner thoughts, whispers', supportsOddEven: true },
+                bigquote: { label: 'Big Quote', description: 'Speech, dialogue', supportsOddEven: true },
+                footer_container: { label: 'Footer Container', description: 'Footer wrapper' },
+                footer_text: { label: 'Footer Text', description: 'Attribution text' }
             }
         };
 
-        // Initialize styles from definitions
-        function initializeStyles() {
-            for (const [className, def] of Object.entries(styleDefinitions)) {
-                state.styles[className] = {};
-                for (const [prop, config] of Object.entries(def.properties)) {
-                    if (config.type === 'border') {
-                        state.styles[className][prop] = `${config.default.width} ${config.default.style} ${config.default.color}`;
-                    } else {
-                        state.styles[className][prop] = config.default;
-                    }
-                }
-                
-                // Initialize odd/even variants
-                if (def.isOddEven) {
-                    state.styles[className + '_odd'] = { ...state.styles[className] };
-                    state.styles[className + '_even'] = { ...state.styles[className] };
-                }
-            }
-        }
-
         // ============================================
-        // PRESETS
+        // TEMPLATE PRESETS
         // ============================================
 
-        const presets = {
-            dark: {
-                output_container_style: {
-                    background: '#000000',
-                    border: '0 solid #4b5563',
-                    'border-radius': '12px',
-                    padding: '20px',
-                    margin: '1rem auto',
-                    'max-width': '600px',
-                    'box-shadow': '0px 4px 12px rgba(0,0,0,0.15)'
-                },
-                output_header_style: {
-                    background: 'transparent',
-                    padding: '0',
-                    margin: '0 0 1rem 0',
-                    'text-align': 'center',
-                    'flex-direction': 'column'
-                },
-                output_image_style: {
-                    width: '80px',
-                    height: '80px',
-                    'border-radius': '50%',
-                    border: '3px solid #4b5563',
-                    'background-size': 'cover',
-                    'background-position': 'center',
-                    'background-repeat': 'no-repeat'
-                },
-                output_card_name_style: {
-                    color: '#f8f8f2',
-                    'font-size': '1.5rem',
-                    'font-weight': '600'
-                },
-                output_llm_used_style: {
-                    background: '#000000',
-                    color: '#f8f8f2',
-                    border: '1px solid #4b5563',
-                    'border-radius': '16px',
-                    padding: '0.25rem 0.75rem',
-                    'font-size': '0.8rem'
-                },
-                output_text_container_style: {
-                    border: '1px solid #4b5563',
-                    padding: '1rem 0 0 0',
-                    margin: '0'
-                },
-                output_text_block_style: {
-                    background: 'transparent',
-                    border: '0 solid #4b5563',
-                    'border-radius': '0',
-                    padding: '0',
-                    margin: '0 0 1rem 0'
-                },
-                output_text_paragraph_style: {
-                    color: '#f8f8f2',
-                    'font-size': '1rem',
-                    'line-height': '1.6'
-                },
-                output_text_smallquote_style: {
-                    color: '#8BE9FD',
-                    background: 'transparent',
-                    'font-style': 'normal',
-                    padding: '0'
-                },
-                output_text_bigquote_style: {
-                    color: '#FFB86C',
-                    background: 'transparent',
-                    'font-style': 'normal',
-                    padding: '0'
-                },
-                output_footer_style: {
-                    border: '1px solid #4b5563',
-                    padding: '0.75rem 0 0 0',
-                    'text-align': 'center'
-                },
-                output_footer_text_style: {
-                    color: '#64748b',
-                    'font-size': '0.75rem',
-                    opacity: '0.7'
+        const templatePresets = {
+            vertical_dark: {
+                name: 'Vertical Dark',
+                description: 'Image on top, content below',
+                structure: 'vertical',
+                styles: {
+                    root_container: {
+                        'background': '#000000',
+                        'border': '0 solid #4b5563',
+                        'border-radius': '12px',
+                        'padding': '20px',
+                        'margin': '1rem auto',
+                        'max-width': '600px',
+                        'box-shadow': '0px 4px 12px rgba(0,0,0,0.15)',
+                        'display': 'flex',
+                        'flex-direction': 'column',
+                        'align-items': 'center'
+                    },
+                    image_container: {
+                        'width': '80px',
+                        'height': '80px',
+                        'border-radius': '50%',
+                        'border': '3px solid #4b5563',
+                        'background-size': 'cover',
+                        'background-position': 'center',
+                        'background-repeat': 'no-repeat',
+                        'margin-bottom': '1rem'
+                    },
+                    content_container: { 'width': '100%' },
+                    header_container: {
+                        'display': 'flex',
+                        'flex-direction': 'column',
+                        'align-items': 'center',
+                        'margin-bottom': '1rem'
+                    },
+                    card_name: { 'color': '#f8f8f2', 'font-size': '1.5rem', 'font-weight': '600', 'margin': '0' },
+                    llm_badge: {
+                        'background': '#000000',
+                        'color': '#f8f8f2',
+                        'border': '1px solid #4b5563',
+                        'border-radius': '16px',
+                        'padding': '0.25rem 0.75rem',
+                        'font-size': '0.8rem',
+                        'margin-top': '0.5rem',
+                        'display': 'inline-block'
+                    },
+                    text_container: { 'border-top': '1px solid #4b5563', 'padding-top': '1rem' },
+                    text_block: { 'background': 'transparent', 'border': '0 solid #4b5563', 'border-radius': '0', 'padding': '0', 'margin': '0 0 1rem 0' },
+                    paragraph: { 'color': '#f8f8f2', 'font-size': '1rem', 'line-height': '1.6', 'padding': '0', 'margin': '0' },
+                    smallquote: { 'color': '#8BE9FD', 'background': 'transparent', 'font-style': 'normal', 'padding': '0', 'margin': '0', 'border': '0 none #8BE9FD' },
+                    bigquote: { 'color': '#FFB86C', 'background': 'transparent', 'font-style': 'normal', 'padding': '0', 'margin': '0', 'border': '0 none #FFB86C' },
+                    footer_container: { 'border-top': '1px solid #4b5563', 'padding-top': '0.75rem', 'text-align': 'center', 'margin-top': '1rem' },
+                    footer_text: { 'color': '#64748b', 'font-size': '0.75rem', 'opacity': '0.7' }
                 }
             },
-            light: {
-                output_container_style: {
-                    background: '#ffffff',
-                    border: '1px solid #e0e0e0',
-                    'border-radius': '12px',
-                    padding: '20px',
-                    margin: '1rem auto',
-                    'max-width': '600px',
-                    'box-shadow': '0px 4px 12px rgba(0,0,0,0.08)'
-                },
-                output_header_style: {
-                    background: 'transparent',
-                    padding: '0',
-                    margin: '0 0 1rem 0',
-                    'text-align': 'center',
-                    'flex-direction': 'column'
-                },
-                output_image_style: {
-                    width: '80px',
-                    height: '80px',
-                    'border-radius': '50%',
-                    border: '3px solid #d0d0d0',
-                    'background-size': 'cover',
-                    'background-position': 'center',
-                    'background-repeat': 'no-repeat'
-                },
-                output_card_name_style: {
-                    color: '#1a1a1a',
-                    'font-size': '1.5rem',
-                    'font-weight': '600'
-                },
-                output_llm_used_style: {
-                    background: '#f5f5f5',
-                    color: '#333333',
-                    border: '1px solid #d0d0d0',
-                    'border-radius': '16px',
-                    padding: '0.25rem 0.75rem',
-                    'font-size': '0.8rem'
-                },
-                output_text_container_style: {
-                    border: '1px solid #e0e0e0',
-                    padding: '1rem 0 0 0',
-                    margin: '0'
-                },
-                output_text_block_style: {
-                    background: 'transparent',
-                    border: '0 solid #e0e0e0',
-                    'border-radius': '0',
-                    padding: '0',
-                    margin: '0 0 1rem 0'
-                },
-                output_text_paragraph_style: {
-                    color: '#1a1a1a',
-                    'font-size': '1rem',
-                    'line-height': '1.6'
-                },
-                output_text_smallquote_style: {
-                    color: '#0891b2',
-                    background: 'transparent',
-                    'font-style': 'normal',
-                    padding: '0'
-                },
-                output_text_bigquote_style: {
-                    color: '#d97706',
-                    background: 'transparent',
-                    'font-style': 'normal',
-                    padding: '0'
-                },
-                output_footer_style: {
-                    border: '1px solid #e0e0e0',
-                    padding: '0.75rem 0 0 0',
-                    'text-align': 'center'
-                },
-                output_footer_text_style: {
-                    color: '#6b7280',
-                    'font-size': '0.75rem',
-                    opacity: '0.7'
+            horizontal_dark: {
+                name: 'Horizontal Dark',
+                description: 'Image on left, content on right',
+                structure: 'horizontal',
+                styles: {
+                    root_container: {
+                        'background': '#000000',
+                        'border': '1px solid #4b5563',
+                        'border-radius': '16px 12px 12px 16px',
+                        'padding': '10px',
+                        'margin': '1rem auto',
+                        'max-width': '700px',
+                        'box-shadow': '0px 4px 12px rgba(0,0,0,0.15)',
+                        'display': 'flex',
+                        'flex-direction': 'row'
+                    },
+                    image_container: {
+                        'width': '200px',
+                        'min-height': '300px',
+                        'border-radius': '8px 0 0 8px',
+                        'background-size': 'cover',
+                        'background-position': 'center',
+                        'background-repeat': 'no-repeat',
+                        'flex-shrink': '0'
+                    },
+                    content_container: { 'flex': '1', 'padding': '1rem', 'margin-left': '10px' },
+                    header_container: { 'display': 'flex', 'align-items': 'start', 'justify-content': 'space-between', 'margin-bottom': '1rem' },
+                    card_name: { 'color': '#f8f8f2', 'font-size': '1.5rem', 'font-weight': '600', 'margin': '0' },
+                    llm_badge: { 'background': '#000000', 'color': '#f8f8f2', 'border': '1px solid #4b5563', 'border-radius': '16px', 'padding': '0.25rem 0.75rem', 'font-size': '0.8rem', 'display': 'inline-block' },
+                    text_container: { 'padding': '0' },
+                    text_block: { 'background': 'transparent', 'border': '0 solid #4b5563', 'border-radius': '0', 'padding': '0', 'margin': '0 0 1rem 0' },
+                    text_block_even: { 'background': '#9c7373', 'border': '0 solid #4b5563', 'border-radius': '5px', 'padding': '5px', 'margin': '0 0 1rem 0' },
+                    paragraph: { 'color': '#f8f8f2', 'font-size': '1rem', 'line-height': '1.6', 'padding': '0', 'margin': '0' },
+                    smallquote: { 'color': '#8BE9FD', 'background': 'transparent', 'font-style': 'normal', 'padding': '0', 'margin': '0', 'border': '0 none #8BE9FD' },
+                    bigquote: { 'color': '#FFB86C', 'background': 'transparent', 'font-style': 'normal', 'padding': '0', 'margin': '0', 'border': '0 none #FFB86C' },
+                    footer_container: { 'border-top': '1px solid #4b5563', 'padding-top': '0.75rem', 'text-align': 'center', 'margin-top': '1rem' },
+                    footer_text: { 'color': '#64748b', 'font-size': '0.75rem', 'opacity': '0.7' }
+                }
+            },
+            horizontal_light: {
+                name: 'Horizontal Light',
+                description: 'Image on left, light theme',
+                structure: 'horizontal',
+                styles: {
+                    root_container: { 'background': '#ffffff', 'border': '1px solid #e0e0e0', 'border-radius': '16px 12px 12px 16px', 'padding': '10px', 'margin': '1rem auto', 'max-width': '700px', 'box-shadow': '0px 4px 12px rgba(0,0,0,0.08)', 'display': 'flex', 'flex-direction': 'row' },
+                    image_container: { 'width': '200px', 'min-height': '300px', 'border-radius': '8px 0 0 8px', 'background-size': 'cover', 'background-position': 'center', 'background-repeat': 'no-repeat', 'flex-shrink': '0' },
+                    content_container: { 'flex': '1', 'padding': '1rem', 'margin-left': '10px' },
+                    header_container: { 'display': 'flex', 'align-items': 'start', 'justify-content': 'space-between', 'margin-bottom': '1rem' },
+                    card_name: { 'color': '#1a1a1a', 'font-size': '1.5rem', 'font-weight': '600', 'margin': '0' },
+                    llm_badge: { 'background': '#f5f5f5', 'color': '#333333', 'border': '1px solid #d0d0d0', 'border-radius': '16px', 'padding': '0.25rem 0.75rem', 'font-size': '0.8rem', 'display': 'inline-block' },
+                    text_container: { 'padding': '0' },
+                    text_block: { 'background': 'transparent', 'border': '0 solid #e0e0e0', 'border-radius': '0', 'padding': '0', 'margin': '0 0 1rem 0' },
+                    paragraph: { 'color': '#1a1a1a', 'font-size': '1rem', 'line-height': '1.6', 'padding': '0', 'margin': '0' },
+                    smallquote: { 'color': '#0891b2', 'background': 'transparent', 'font-style': 'normal', 'padding': '0', 'margin': '0', 'border': '0 none #0891b2' },
+                    bigquote: { 'color': '#d97706', 'background': 'transparent', 'font-style': 'normal', 'padding': '0', 'margin': '0', 'border': '0 none #d97706' },
+                    footer_container: { 'border-top': '1px solid #e0e0e0', 'padding-top': '0.75rem', 'text-align': 'center', 'margin-top': '1rem' },
+                    footer_text: { 'color': '#6b7280', 'font-size': '0.75rem', 'opacity': '0.7' }
                 }
             }
         };
@@ -1065,6 +898,269 @@
 
         function closeModal() {
             document.getElementById('confirmModal').classList.add('hidden');
+        }
+
+        function updateGlobalFont() {
+            state.globalFont = document.getElementById('globalFont').value;
+            updatePreview();
+        }
+
+        // ============================================
+        // TEMPLATE MANAGEMENT
+        // ============================================
+
+        function loadTemplate(templateKey) {
+            if (!templatePresets[templateKey]) return;
+            
+            state.currentTemplate = templateKey;
+            state.templateStyles = JSON.parse(JSON.stringify(templatePresets[templateKey].styles));
+            
+            document.getElementById('currentTemplateName').textContent = templatePresets[templateKey].name;
+            
+            generateStyleEditors();
+            updatePreview();
+        }
+
+        function updatePresetDropdown() {
+            const select = document.getElementById('presetSelect');
+            select.innerHTML = '<option value="">-- Select Template --</option>';
+            
+            for (const [key, preset] of Object.entries(templatePresets)) {
+                const option = document.createElement('option');
+                option.value = key;
+                option.textContent = `${preset.name} - ${preset.description}`;
+                select.appendChild(option);
+            }
+        }
+
+        function downloadCurrentTemplate() {
+            const template = {
+                name: 'Custom Template',
+                description: 'Exported from Text Formatter',
+                structure: templatePresets[state.currentTemplate]?.structure || 'vertical',
+                styles: state.templateStyles,
+                globalFont: state.globalFont,
+                isOddEvenMode: state.isOddEvenMode
+            };
+            
+            const blob = new Blob([JSON.stringify(template, null, 2)], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+            
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'text-formatter-template.json';
+            a.click();
+            
+            URL.revokeObjectURL(url);
+        }
+
+        function uploadTemplate(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+            
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                try {
+                    const template = JSON.parse(e.target.result);
+                    
+                    const customKey = 'custom_' + Date.now();
+                    templatePresets[customKey] = {
+                        name: template.name || 'Custom',
+                        description: template.description || 'Imported template',
+                        structure: template.structure || 'vertical',
+                        styles: template.styles
+                    };
+                    
+                    state.currentTemplate = customKey;
+                    state.templateStyles = JSON.parse(JSON.stringify(template.styles));
+                    state.globalFont = template.globalFont || state.globalFont;
+                    state.isOddEvenMode = template.isOddEvenMode || false;
+                    
+                    document.getElementById('currentTemplateName').textContent = template.name || 'Custom';
+                    
+                    updatePresetDropdown();
+                    generateStyleEditors();
+                    updatePreview();
+                    
+                    alert('Template loaded successfully!');
+                } catch (err) {
+                    console.error('Failed to parse template:', err);
+                    alert('Invalid template file.');
+                }
+            };
+            reader.readAsText(file);
+            event.target.value = '';
+        }
+
+        // ============================================
+        // STYLE EDITOR GENERATION
+        // ============================================
+
+        function generateStyleEditors() {
+            const container = document.getElementById('styleEditors');
+            container.innerHTML = '';
+            
+            for (const [elementKey, elementDef] of Object.entries(templateDefinitions.elements)) {
+                if (elementKey.endsWith('_even')) continue;
+                
+                const section = createStyleSection(elementKey, elementDef);
+                container.appendChild(section);
+                
+                if (elementDef.supportsOddEven && state.isOddEvenMode) {
+                    const evenSection = createStyleSection(elementKey + '_even', {
+                        ...elementDef,
+                        label: elementDef.label + ' (Even)'
+                    });
+                    container.appendChild(evenSection);
+                }
+            }
+        }
+
+        function createStyleSection(elementKey, elementDef) {
+            const section = document.createElement('div');
+            section.className = 'section';
+            section.id = `section_${elementKey}`;
+            
+            const styles = state.templateStyles[elementKey] || {};
+            const labelSuffix = elementDef.supportsOddEven && state.isOddEvenMode && !elementKey.endsWith('_even') ? ' (Odd)' : '';
+            
+            let propertiesHTML = '';
+            for (const [prop, value] of Object.entries(styles)) {
+                propertiesHTML += createPropertyInput(elementKey, prop, value);
+            }
+            
+            section.innerHTML = `
+                <div class="section-header" onclick="toggleSection(this)">
+                    <h3>🎨 ${elementDef.label}${labelSuffix}</h3>
+                    <span class="toggle-icon">▼</span>
+                </div>
+                <div class="section-content">
+                    <p style="font-size: 0.75rem; color: #666; margin-bottom: 12px;">${elementDef.description || ''}</p>
+                    ${propertiesHTML}
+                    <div class="btn-group" style="margin-top: 12px;">
+                        <button class="btn btn-secondary btn-small" onclick="addProperty('${elementKey}')">+ Add Property</button>
+                    </div>
+                </div>
+            `;
+            
+            return section;
+        }
+function createPropertyInput(elementKey, prop, value) {
+    const isColor = (prop === 'color' || prop === 'background-color' || prop === 'background');
+    const isBorder = prop === 'border';
+    const isBackground = (prop === 'background' || prop === 'background-color');
+    
+    let inputHTML = '';
+    
+    if (isBorder) {
+        // Parse existing border value: "1px solid #4b5563"
+        const borderMatch = (value || '').match(/^(\d+)px\s+(\w+)\s+(#[a-fA-F0-9]{6}|#[a-fA-F0-9]{3}|[a-zA-Z]+)$/);
+        const width = borderMatch ? borderMatch[1] : '1';
+        const style = borderMatch ? borderMatch[2] : 'solid';
+        const color = borderMatch ? borderMatch[3] : '#4b5563';
+        
+        inputHTML = `
+            <div class="border-editor">
+                <input type="number" value="${width}" min="0" max="20" 
+                    onchange="updateBorderStyle('${elementKey}', '${prop}', this.parentElement)">
+                <span>px</span>
+                <select onchange="updateBorderStyle('${elementKey}', '${prop}', this.parentElement)">
+                    <option value="none" ${style === 'none' ? 'selected' : ''}>none</option>
+                    <option value="solid" ${style === 'solid' ? 'selected' : ''}>solid</option>
+                    <option value="dashed" ${style === 'dashed' ? 'selected' : ''}>dashed</option>
+                    <option value="dotted" ${style === 'dotted' ? 'selected' : ''}>dotted</option>
+                    <option value="double" ${style === 'double' ? 'selected' : ''}>double</option>
+                </select>
+                <input type="color" value="${color.startsWith('#') ? color : '#4b5563'}" 
+                    onchange="updateBorderStyle('${elementKey}', '${prop}', this.parentElement)">
+            </div>
+        `;
+    } else if (isBackground) {
+        // Check if it's a gradient or solid color
+        const isGradient = value && value.includes('gradient');
+        const solidColor = (!value || value.startsWith('#')) ? (value || '#000000') : '#000000';
+        
+        inputHTML = `
+            <div class="background-type-selector">
+                <select onchange="toggleBackgroundType('${elementKey}', '${prop}', this.value, this.parentElement)">
+                    <option value="solid" ${!isGradient ? 'selected' : ''}>Solid Color</option>
+                    <option value="gradient" ${isGradient ? 'selected' : ''}>Gradient</option>
+                </select>
+                <div class="solid-color-editor" style="${isGradient ? 'display:none' : ''}">
+                    <input type="color" value="${solidColor}" 
+                        onchange="updateTemplateStyle('${elementKey}', '${prop}', this.value)">
+                    <input type="text" value="${!isGradient ? value || '' : ''}" 
+                        onchange="updateTemplateStyle('${elementKey}', '${prop}', this.value)">
+                </div>
+                <div class="gradient-editor" style="${!isGradient ? 'display:none' : ''}" data-element="${elementKey}" data-prop="${prop}">
+                    <select class="gradient-type" onchange="updateGradient('${elementKey}', '${prop}')">
+                        <option value="linear" ${value?.includes('linear') ? 'selected' : ''}>Linear</option>
+                        <option value="radial" ${value?.includes('radial') ? 'selected' : ''}>Radial</option>
+                    </select>
+                    <div class="gradient-direction" style="${value?.includes('radial') ? 'display:none' : ''}">
+                        <label style="font-size: 0.75rem;">Angle:</label>
+                        <input type="number" class="gradient-angle" value="${parseGradientAngle(value)}" min="0" max="360" 
+                            onchange="updateGradient('${elementKey}', '${prop}')">
+                        <span>deg</span>
+                    </div>
+                    <div class="gradient-stops">
+                        ${generateGradientStops(elementKey, prop, value)}
+                    </div>
+                    <button class="btn btn-secondary btn-small" onclick="addGradientStop('${elementKey}', '${prop}')">+ Add Stop</button>
+                    <div class="gradient-preview" style="background: ${isGradient ? value : 'linear-gradient(90deg, #000 0%, #fff 100%)'}"></div>
+                </div>
+            </div>
+        `;
+    } else if (isColor) {
+        const colorValue = (value && value.startsWith('#')) ? value : '#000000';
+        inputHTML = `
+            <input type="color" value="${colorValue}" onchange="updateTemplateStyle('${elementKey}', '${prop}', this.value)">
+            <input type="text" value="${value || ''}" onchange="updateTemplateStyle('${elementKey}', '${prop}', this.value)">
+        `;
+    } else {
+        inputHTML = `<input type="text" value="${value || ''}" onchange="updateTemplateStyle('${elementKey}', '${prop}', this.value)">`;
+    }
+    
+    return `
+        <div class="style-property">
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+                <span class="style-property-label">${prop}</span>
+                <button class="btn btn-danger btn-small" style="padding: 2px 6px; font-size: 0.7rem;" onclick="removeProperty('${elementKey}', '${prop}')">×</button>
+            </div>
+            <div class="style-property-input">${inputHTML}</div>
+        </div>
+    `;
+}
+        function updateTemplateStyle(elementKey, property, value) {
+            if (!state.templateStyles[elementKey]) {
+                state.templateStyles[elementKey] = {};
+            }
+            state.templateStyles[elementKey][property] = value;
+            updatePreview();
+        }
+
+        function removeProperty(elementKey, property) {
+            if (state.templateStyles[elementKey]) {
+                delete state.templateStyles[elementKey][property];
+                generateStyleEditors();
+                updatePreview();
+            }
+        }
+
+        function addProperty(elementKey) {
+            const prop = prompt('Enter CSS property name (e.g., margin, padding, border):');
+            if (!prop) return;
+            
+            const value = prompt('Enter value:');
+            if (value === null) return;
+            
+            if (!state.templateStyles[elementKey]) {
+                state.templateStyles[elementKey] = {};
+            }
+            state.templateStyles[elementKey][prop.trim()] = value.trim();
+            
+            generateStyleEditors();
+            updatePreview();
         }
 
         // ============================================
@@ -1084,32 +1180,96 @@
             await executePaste();
         }
 
+        function handleManualPaste() {
+            const html = document.getElementById('manualPasteInput').value;
+            
+            if (!html.trim()) {
+                alert('Please paste some content first.');
+                return;
+            }
+            
+            const parsed = parseInputHTML(html);
+            
+            if (parsed) {
+                state.textBlocks = [parsed.textContent];
+                state.cardName = parsed.cardName;
+                state.imageData = parsed.imageData;
+                state.hasContent = true;
+                state.summaryTexts = ['Section 1'];
+                
+                document.getElementById('cardNameInput').value = state.cardName;
+                document.getElementById('addBtn').disabled = false;
+                
+                updateQuoteColorMappings();
+                updateSummaryInputs();
+                updatePreview();
+                
+                document.getElementById('manualPasteInput').value = '';
+            } else {
+                alert('Could not parse the content. Make sure it contains valid HTML.');
+            }
+        }
+
         async function executePaste() {
             try {
-                const text = await navigator.clipboard.readText();
-                const parsed = parseInputHTML(text);
+                let html = '';
+                
+                if (navigator.clipboard.read) {
+                    try {
+                        const clipboardItems = await navigator.clipboard.read();
+                        
+                        for (const item of clipboardItems) {
+                            if (item.types.includes('text/html')) {
+                                const blob = await item.getType('text/html');
+                                html = await blob.text();
+                                break;
+                            }
+                        }
+                        
+                        if (!html) {
+                            for (const item of clipboardItems) {
+                                if (item.types.includes('text/plain')) {
+                                    const blob = await item.getType('text/plain');
+                                    html = await blob.text();
+                                    break;
+                                }
+                            }
+                        }
+                    } catch (readError) {
+                        html = await navigator.clipboard.readText();
+                    }
+                } else {
+                    html = await navigator.clipboard.readText();
+                }
+                
+                if (!html) {
+                    alert('No content found in clipboard.');
+                    return;
+                }
+                
+                const parsed = parseInputHTML(html);
                 
                 if (parsed) {
                     state.textBlocks = [parsed.textContent];
                     state.cardName = parsed.cardName;
-                    state.llmUsed = parsed.llmUsed;
+					state.pills = parsed.pills || [];
                     state.imageData = parsed.imageData;
                     state.hasContent = true;
                     state.summaryTexts = ['Section 1'];
                     
-                    // Update UI
                     document.getElementById('cardNameInput').value = state.cardName;
-                    document.getElementById('llmUsedInput').value = state.llmUsed;
                     document.getElementById('addBtn').disabled = false;
                     
-                    // Update quote color mappings
+					renderPills();
                     updateQuoteColorMappings();
                     updateSummaryInputs();
                     updatePreview();
+                } else {
+                    alert('Could not parse the pasted content.');
                 }
             } catch (err) {
                 console.error('Failed to read clipboard:', err);
-                alert('Failed to read clipboard. Please make sure you have copied HTML content.');
+                alert('Failed to read clipboard.');
             }
         }
 
@@ -1117,14 +1277,42 @@
             if (!state.hasContent) return;
             
             try {
-                const text = await navigator.clipboard.readText();
-                const parsed = parseInputHTML(text);
+                let html = '';
+                
+                if (navigator.clipboard.read) {
+                    try {
+                        const clipboardItems = await navigator.clipboard.read();
+                        
+                        for (const item of clipboardItems) {
+                            if (item.types.includes('text/html')) {
+                                const blob = await item.getType('text/html');
+                                html = await blob.text();
+                                break;
+                            }
+                        }
+                        
+                        if (!html) {
+                            for (const item of clipboardItems) {
+                                if (item.types.includes('text/plain')) {
+                                    const blob = await item.getType('text/plain');
+                                    html = await blob.text();
+                                    break;
+                                }
+                            }
+                        }
+                    } catch (readError) {
+                        html = await navigator.clipboard.readText();
+                    }
+                } else {
+                    html = await navigator.clipboard.readText();
+                }
+                
+                const parsed = parseInputHTML(html);
                 
                 if (parsed) {
                     state.textBlocks.push(parsed.textContent);
                     state.summaryTexts.push(`Section ${state.textBlocks.length}`);
                     
-                    // Merge any new colors
                     updateQuoteColorMappings();
                     updateSummaryInputs();
                     updatePreview();
@@ -1143,28 +1331,39 @@
             const parser = new DOMParser();
             const doc = parser.parseFromString(html, 'text/html');
             
-            // Find the main container
             const container = doc.querySelector('div[style*="font-family"]') || doc.querySelector('div');
             if (!container) return null;
             
-            // Extract card name
             const cardNameEl = container.querySelector('h3');
             const cardName = cardNameEl ? cardNameEl.textContent.trim() : '';
             
-            // Extract LLM used
-            const llmBadge = container.querySelector('span[style*="border-radius: 16px"]') || 
-                            container.querySelector('span[style*="inline-block"]');
-            const llmUsed = llmBadge ? llmBadge.textContent.trim() : '';
-            
-            // Extract image
+    // Parse pills - look for spans with border-radius: 16px
+    const pillElements = container.querySelectorAll('span[style*="border-radius: 16px"], span[style*="inline-block"]');
+    const pills = [];
+                
+    pillElements.forEach(el => {
+        const style = el.getAttribute('style') || '';
+        const text = el.textContent.trim();
+        
+        // Extract colors from style
+        const bgMatch = style.match(/background:\s*(#[a-fA-F0-9]{6}|#[a-fA-F0-9]{3})/i);
+        const colorMatch = style.match(/(?:^|;)\s*color:\s*(#[a-fA-F0-9]{6}|#[a-fA-F0-9]{3})/i);
+        const borderMatch = style.match(/border:\s*\d+px\s+\w+\s+(#[a-fA-F0-9]{6}|#[a-fA-F0-9]{3})/i);
+        
+        pills.push({
+            text: text,
+            bgColor: bgMatch ? bgMatch[1] : '#000000',
+            textColor: colorMatch ? colorMatch[1] : '#f8f8f2',
+            borderColor: borderMatch ? borderMatch[1] : '#4b5563'
+        });
+    });
             const imgEl = container.querySelector('img');
             const imageData = imgEl ? imgEl.src : '';
             
-            // Extract text content
             const textContainer = container.querySelector('div[style*="border-top"]');
             const textContent = parseTextContent(textContainer || container);
             
-            return { cardName, llmUsed, imageData, textContent };
+            return { cardName, pills, imageData, textContent };
         }
 
         function parseTextContent(container) {
@@ -1175,43 +1374,85 @@
             
             for (let i = 0; i < children.length; i++) {
                 const child = children[i];
-                const tagName = child.tagName.toLowerCase();
+                const text = child.textContent.trim();
                 
-                if (tagName === 'p') {
-                    const text = child.textContent.trim();
-                    if (text) {
-                        elements.push({ type: 'paragraph', content: text });
-                    }
-                } else if (tagName === 'div') {
-                    const style = child.getAttribute('style') || '';
-                    const colorMatch = style.match(/color:\s*(#[a-fA-F0-9]{6}|#[a-fA-F0-9]{3}|[a-zA-Z]+)/i);
+                if (!text) continue;
+                
+                const style = child.getAttribute('style') || '';
+                const colorMatch = style.match(/(?:^|;)\s*color:\s*(#[a-fA-F0-9]{6}|#[a-fA-F0-9]{3}|rgb\([^)]+\)|[a-zA-Z]+)/i);
+                
+                if (colorMatch) {
+                    const color = normalizeColor(colorMatch[1]);
                     
-                    if (colorMatch) {
-                        const color = colorMatch[1].toUpperCase();
+                    if (QUOTE_COLORS[color]) {
                         state.detectedColors.add(color);
                         
-                        // Default mapping
                         if (!state.quoteColorMap[color]) {
-                            if (color === '#8BE9FD') {
-                                state.quoteColorMap[color] = 'smallquote';
-                            } else if (color === '#FFB86C') {
-                                state.quoteColorMap[color] = 'bigquote';
-                            } else {
-                                state.quoteColorMap[color] = 'smallquote';
-                            }
+                            state.quoteColorMap[color] = QUOTE_COLORS[color];
                         }
                         
                         elements.push({ 
                             type: 'quote', 
                             quoteType: state.quoteColorMap[color],
                             originalColor: color,
-                            content: child.textContent.trim() 
+                            content: text 
+                        });
+                    } else if (isParagraphColor(color)) {
+                        elements.push({ type: 'paragraph', content: text });
+                    } else {
+                        state.detectedColors.add(color);
+                        
+                        if (!state.quoteColorMap[color]) {
+                            state.quoteColorMap[color] = 'unknown';
+                        }
+                        
+                        elements.push({ 
+                            type: 'quote', 
+                            quoteType: state.quoteColorMap[color],
+                            originalColor: color,
+                            content: text 
                         });
                     }
+                } else {
+                    elements.push({ type: 'paragraph', content: text });
                 }
             }
             
             return elements;
+        }
+
+        function normalizeColor(color) {
+            color = color.trim().toUpperCase();
+            
+            if (color.startsWith('RGB')) {
+                const match = color.match(/RGB\(\s*(\d+)\s*,\s*(\d+)\s*,\s*(\d+)\s*\)/i);
+                if (match) {
+                    const r = parseInt(match[1]).toString(16).padStart(2, '0');
+                    const g = parseInt(match[2]).toString(16).padStart(2, '0');
+                    const b = parseInt(match[3]).toString(16).padStart(2, '0');
+                    color = `#${r}${g}${b}`.toUpperCase();
+                }
+            }
+            
+            if (color.match(/^#[A-F0-9]{3}$/)) {
+                color = `#${color[1]}${color[1]}${color[2]}${color[2]}${color[3]}${color[3]}`;
+            }
+            
+            return color;
+        }
+
+        function isParagraphColor(color) {
+            if (PARAGRAPH_COLORS.includes(color)) return true;
+            
+            const hex = color.replace('#', '');
+            const r = parseInt(hex.substring(0, 2), 16);
+            const g = parseInt(hex.substring(2, 4), 16);
+            const b = parseInt(hex.substring(4, 6), 16);
+            
+            const isLight = r > 200 && g > 200 && b > 200;
+            const isSimilar = Math.abs(r - g) < 20 && Math.abs(g - b) < 20 && Math.abs(r - b) < 20;
+            
+            return isLight && isSimilar;
         }
 
         function updateQuoteColorMappings() {
@@ -1233,7 +1474,8 @@
                     <select onchange="updateQuoteMapping('${color}', this.value)">
                         <option value="smallquote" ${state.quoteColorMap[color] === 'smallquote' ? 'selected' : ''}>Small Quote</option>
                         <option value="bigquote" ${state.quoteColorMap[color] === 'bigquote' ? 'selected' : ''}>Big Quote</option>
-                        <option value="ignore" ${state.quoteColorMap[color] === 'ignore' ? 'selected' : ''}>Ignore (as paragraph)</option>
+                        <option value="paragraph" ${state.quoteColorMap[color] === 'paragraph' ? 'selected' : ''}>Paragraph</option>
+                        <option value="ignore" ${state.quoteColorMap[color] === 'ignore' ? 'selected' : ''}>Ignore</option>
                     </select>
                 `;
                 container.appendChild(mapping);
@@ -1243,13 +1485,12 @@
         function updateQuoteMapping(color, type) {
             state.quoteColorMap[color] = type;
             
-            // Re-parse all text blocks to apply new mapping
             for (let i = 0; i < state.textBlocks.length; i++) {
                 for (let j = 0; j < state.textBlocks[i].length; j++) {
                     const element = state.textBlocks[i][j];
                     if (element.type === 'quote' && element.originalColor === color) {
                         element.quoteType = type === 'ignore' ? 'paragraph' : type;
-                        if (type === 'ignore') {
+                        if (type === 'ignore' || type === 'paragraph') {
                             element.type = 'paragraph';
                         }
                     }
@@ -1263,24 +1504,20 @@
         // SEARCH & REPLACE
         // ============================================
 
-        function executeRe place() {
+        function executeReplace() {
             const searchText = document.getElementById('searchInput').value;
             const replaceText = document.getElementById('replaceInput').value;
             
             if (!searchText) return;
             
-            // Backup for undo
             state.searchReplaceBackup = JSON.parse(JSON.stringify(state.textBlocks));
             
-            // Perform replacement
             for (let i = 0; i < state.textBlocks.length; i++) {
                 for (let j = 0; j < state.textBlocks[i].length; j++) {
-                    state.textBlocks[i][j].content = state.textBlocks[i][j].content
-                        .split(searchText).join(replaceText);
+                    state.textBlocks[i][j].content = state.textBlocks[i][j].content.split(searchText).join(replaceText);
                 }
             }
             
-            // Also replace in card name
             state.cardName = state.cardName.split(searchText).join(replaceText);
             document.getElementById('cardNameInput').value = state.cardName;
             
@@ -1298,137 +1535,7 @@
         }
 
         // ============================================
-        // STYLE EDITOR GENERATION
-        // ============================================
-
-        function generateStyleEditors() {
-            const container = document.getElementById('styleEditors');
-            container.innerHTML = '';
-            
-            for (const [className, def] of Object.entries(styleDefinitions)) {
-                const section = createStyleSection(className, def, false);
-                container.appendChild(section);
-                
-                // Add odd/even sections if applicable
-                if (def.isOddEven && state.isOddEvenMode) {
-                    const evenSection = createStyleSection(className + '_even', { 
-                        ...def, 
-                        label: def.label + ' (Even)' 
-                    }, true);
-                    evenSection.id = `section_${className}_even`;
-                    container.appendChild(evenSection);
-                }
-            }
-        }
-
-        function createStyleSection(className, def, isEvenSection) {
-            const section = document.createElement('div');
-            section.className = 'section';
-            section.id = `section_${className}`;
-            
-            const labelSuffix = def.isOddEven && state.isOddEvenMode && !isEvenSection ? ' (Odd)' : '';
-            
-            section.innerHTML = `
-                <div class="section-header" onclick="toggleSection(this)">
-                    <h3>🎨 ${def.label}${labelSuffix}</h3>
-                    <span class="toggle-icon">▼</span>
-                </div>
-                <div class="section-content">
-                    ${generatePropertyInputs(className, def.properties)}
-                </div>
-            `;
-            
-            return section;
-        }
-
-        function generatePropertyInputs(className, properties) {
-            let html = '';
-            
-            for (const [prop, config] of Object.entries(properties)) {
-                const value = state.styles[className]?.[prop] || config.default;
-                
-                html += `<div class="style-property">
-                    <span class="style-property-label">${prop}</span>
-                    <div class="style-property-input">`;
-                
-                switch (config.type) {
-                    case 'color':
-                        html += `
-                            <input type="color" value="${value}" onchange="updateStyle('${className}', '${prop}', this.value)">
-                            <input type="text" value="${value}" onchange="updateStyle('${className}', '${prop}', this.value)">
-                        `;
-                        break;
-                    case 'size':
-                        html += `
-                            <input type="text" value="${value}" onchange="updateStyle('${className}', '${prop}', this.value)">
-                        `;
-                        break;
-                    case 'text':
-                        html += `
-                            <input type="text" value="${value}" onchange="updateStyle('${className}', '${prop}', this.value)">
-                        `;
-                        break;
-                    case 'select':
-                        html += `<select onchange="updateStyle('${className}', '${prop}', this.value)">`;
-                        for (const opt of config.options) {
-                            const selected = value === opt ? 'selected' : '';
-                            html += `<option value="${opt}" ${selected}>${opt}</option>`;
-                        }
-                        html += `</select>`;
-                        break;
-                    case 'border':
-                        const borderParts = parseBorder(value);
-                        html += `
-                            <input type="text" value="${borderParts.width}" placeholder="width" style="width: 60px;" 
-                                onchange="updateBorderStyle('${className}', '${prop}', 'width', this.value)">
-                            <select onchange="updateBorderStyle('${className}', '${prop}', 'style', this.value)">
-                                <option value="solid" ${borderParts.style === 'solid' ? 'selected' : ''}>solid</option>
-                                <option value="dashed" ${borderParts.style === 'dashed' ? 'selected' : ''}>dashed</option>
-                                <option value="dotted" ${borderParts.style === 'dotted' ? 'selected' : ''}>dotted</option>
-                                <option value="none" ${borderParts.style === 'none' ? 'selected' : ''}>none</option>
-                            </select>
-                            <input type="color" value="${borderParts.color}" 
-                                onchange="updateBorderStyle('${className}', '${prop}', 'color', this.value)">
-                        `;
-                        break;
-                }
-                
-                html += `</div></div>`;
-            }
-            
-            return html;
-        }
-
-        function parseBorder(borderStr) {
-            const parts = borderStr.split(' ');
-            return {
-                width: parts[0] || '0',
-                style: parts[1] || 'solid',
-                color: parts[2] || '#000000'
-            };
-        }
-
-        function updateStyle(className, property, value) {
-            if (!state.styles[className]) {
-                state.styles[className] = {};
-            }
-            state.styles[className][property] = value;
-            updatePreview();
-        }
-
-        function updateBorderStyle(className, property, part, value) {
-            if (!state.styles[className]) {
-                state.styles[className] = {};
-            }
-            
-            const current = parseBorder(state.styles[className][property] || '0 solid #000000');
-            current[part] = value;
-            state.styles[className][property] = `${current.width} ${current.style} ${current.color}`;
-            updatePreview();
-        }
-
-        // ============================================
-        // ODD/EVEN MODE
+        // ODD/EVEN & DETAILS MODE
         // ============================================
 
         function toggleOddEven() {
@@ -1438,10 +1545,6 @@
             generateStyleEditors();
             updatePreview();
         }
-
-        // ============================================
-        // DETAILS MODE
-        // ============================================
 
         function toggleDetails() {
             const toggle = document.getElementById('detailsToggle');
@@ -1466,8 +1569,7 @@
                 div.className = 'summary-input-group';
                 div.innerHTML = `
                     <label>Block ${i + 1}:</label>
-                    <input type="text" value="${state.summaryTexts[i] || `Section ${i + 1}`}" 
-                        onchange="updateSummaryText(${i}, this.value)">
+                    <input type="text" value="${state.summaryTexts[i] || `Section ${i + 1}`}" onchange="updateSummaryText(${i}, this.value)">
                 `;
                 container.appendChild(div);
             }
@@ -1504,13 +1606,10 @@
         // ============================================
 
         function updatePreview() {
-            // Update state from inputs
             state.cardName = document.getElementById('cardNameInput').value;
-            state.llmUsed = document.getElementById('llmUsedInput').value;
             
             if (!state.hasContent && state.textBlocks.length === 0) {
-                document.getElementById('previewFrame').innerHTML = 
-                    '<p style="color: #666; text-align: center; padding: 40px;">Paste content to see preview</p>';
+                document.getElementById('previewFrame').innerHTML = '<p style="color: #666; text-align: center; padding: 40px;">Paste content to see preview</p>';
                 return;
             }
             
@@ -1524,36 +1623,105 @@
         }
 
         function generatePreviewHTML() {
-            const globalFont = document.getElementById('globalFont').value;
+            const template = templatePresets[state.currentTemplate];
+            const structure = template?.structure || 'vertical';
             
-            const containerStyle = generateInlineStyle('output_container_style', { 'font-family': globalFont });
-            const headerStyle = generateInlineStyle('output_header_style', { display: 'flex', 'align-items': 'center' });
-            const imageStyle = generateInlineStyle('output_image_style', { 'background-image': state.imageData ? `url(${state.imageData})` : 'none' });
-            const cardNameStyle = generateInlineStyle('output_card_name_style', { margin: '0.75rem 0 0.5rem 0' });
-            const llmStyle = generateInlineStyle('output_llm_used_style', { display: 'inline-block' });
-            const textContainerStyle = generateInlineStyle('output_text_container_style');
-            const footerStyle = generateInlineStyle('output_footer_style', { 'margin-top': '1rem' });
-            const footerTextStyle = generateInlineStyle('output_footer_text_style');
-            
+            if (structure === 'horizontal') {
+                return generateHorizontalLayout();
+            } else {
+                return generateVerticalLayout();
+            }
+        }
+
+function generateVerticalLayout() {
+    const rootStyle = generateInlineStyle('root_container', { 'font-family': state.globalFont });
+    const imageStyle = generateInlineStyle('image_container', { 
+        'background-image': state.imageData ? `url(${state.imageData})` : 'none' 
+    });
+    const contentStyle = generateInlineStyle('content_container');
+    const headerStyle = generateInlineStyle('header_container');
+    const cardNameStyle = generateInlineStyle('card_name');
+    const textContainerStyle = generateInlineStyle('text_container');
+    const footerStyle = generateInlineStyle('footer_container');
+    const footerTextStyle = generateInlineStyle('footer_text');
+    
+    const imageHTML = state.imageData ? `<div style="${imageStyle}"></div>` : '';
+    const blocksHTML = generateTextBlocksHTML();
+    const pillsHTML = generatePillsHTML();
+    
+    return `<div style="${rootStyle}">
+    ${imageHTML}
+    <div style="${contentStyle}">
+        <div style="${headerStyle}">
+            <div style="${cardNameStyle}">${state.cardName}</div>
+            <div style="margin-top: 0.5rem;">
+                ${pillsHTML}
+            </div>
+        </div>
+        <div style="${textContainerStyle}">
+            ${blocksHTML}
+        </div>
+        <div style="${footerStyle}">
+            <span style="${footerTextStyle}">From <a href="https://grimtze.github.io/logarhythm/logarhythm.html">RisuAI</a>, with <a href="https://grimtze.github.io/logarhythm/logarhythm.html">Logarhythm 𝄞</a></span>
+        </div>
+    </div>
+</div>`;
+}
+function generateHorizontalLayout() {
+    const rootStyle = generateInlineStyle('root_container', { 'font-family': state.globalFont });
+    const imageStyle = generateInlineStyle('image_container', { 
+        'background-image': state.imageData ? `url(${state.imageData})` : "url('https://placehold.co/600x400/EEE/31343C')" 
+    });
+    const contentStyle = generateInlineStyle('content_container');
+    const headerStyle = generateInlineStyle('header_container');
+    const cardNameStyle = generateInlineStyle('card_name');
+    const textContainerStyle = generateInlineStyle('text_container');
+    const footerStyle = generateInlineStyle('footer_container');
+    const footerTextStyle = generateInlineStyle('footer_text');
+    
+    const blocksHTML = generateTextBlocksHTML();
+    const pillsHTML = generatePillsHTML();
+    
+    return `<div style="${rootStyle}">
+    <div style="${imageStyle}"></div>
+    <div style="${contentStyle}">
+        <div style="${headerStyle}">
+            <div>
+                <div style="${cardNameStyle}">${state.cardName}</div>
+                <div style="margin-top: 0.5rem;">
+                    ${pillsHTML}
+                </div>
+            </div>
+        </div>
+        <div style="${textContainerStyle}">
+            ${blocksHTML}
+        </div>
+        <div style="${footerStyle}">
+            <span style="${footerTextStyle}">From RisuAI, with Logarhythm𝄞</span>
+        </div>
+    </div>
+</div>`;
+}
+
+        function generateTextBlocksHTML() {
             let blocksHTML = '';
             
             for (let i = 0; i < state.textBlocks.length; i++) {
                 const isEven = i % 2 === 1;
-                const suffix = state.isOddEvenMode ? (isEven ? '_even' : '_odd') : '';
-                
-                const blockStyle = generateInlineStyle('output_text_block_style' + suffix);
-                const paraStyle = generateInlineStyle('output_text_paragraph_style' + suffix);
-                const smallQuoteStyle = generateInlineStyle('output_text_smallquote_style' + suffix);
-                const bigQuoteStyle = generateInlineStyle('output_text_bigquote_style' + suffix);
+                const blockStyleKey = state.isOddEvenMode && isEven ? 'text_block_even' : 'text_block';
+                const blockStyle = generateInlineStyle(blockStyleKey);
                 
                 let blockContent = '';
                 
                 for (const element of state.textBlocks[i]) {
+                    const paraStyle = generateInlineStyle('paragraph');
+                    
                     if (element.type === 'paragraph') {
                         blockContent += `<p style="${paraStyle}">${element.content}</p>\n`;
                     } else if (element.type === 'quote') {
-                        const quoteStyle = element.quoteType === 'smallquote' ? smallQuoteStyle : bigQuoteStyle;
-                        blockContent += `<br><div style="${quoteStyle}">${element.content}</div><br>\n`;
+                        const quoteStyleKey = element.quoteType === 'smallquote' ? 'smallquote' : 'bigquote';
+                        const quoteStyle = generateInlineStyle(quoteStyleKey);
+                        blockContent += `<p style="${paraStyle}; ${quoteStyle}">${element.content}</p>\n`;
                     }
                 }
                 
@@ -1573,29 +1741,14 @@
                 }
             }
             
-            const imageHTML = state.imageData 
-                ? `<div style="${imageStyle}"></div>`
-                : '';
-            
-            return `<div style="${containerStyle}">
-    <div style="${headerStyle}">
-        ${imageHTML}
-        <div style="${cardNameStyle}">${state.cardName}</div>
-        <div style="${llmStyle}">${state.llmUsed}</div>
-    </div>
-    <div style="${textContainerStyle}">
-        ${blocksHTML}
-    </div>
-    <div style="${footerStyle}">
-        <span style="${footerTextStyle}">From RisuAI, with Logarhythm𝄞</span>
-    </div>
-</div>`;
+            return blocksHTML;
         }
 
-        function generateInlineStyle(className, extraStyles = {}) {
-            const styles = { ...state.styles[className], ...extraStyles };
+        function generateInlineStyle(elementKey, extraStyles = {}) {
+            const styles = { ...state.templateStyles[elementKey], ...extraStyles };
+            
             return Object.entries(styles)
-                .filter(([key, value]) => value && value !== 'transparent' || key === 'background')
+                .filter(([key, value]) => value !== undefined && value !== null && value !== '')
                 .map(([key, value]) => `${key}: ${value}`)
                 .join('; ');
         }
@@ -1623,14 +1776,12 @@
                 editTextarea.classList.add('hidden');
                 editBtn.textContent = 'Edit HTML';
                 previewTitle.textContent = 'Preview';
-                // Apply edits
                 previewFrame.innerHTML = editTextarea.value;
             }
         }
 
         function updateFromEdit() {
-            // When in edit mode, changes to textarea update the stored HTML
-            // This will be applied when switching back to preview
+            // Changes will be applied when switching back to preview
         }
 
         // ============================================
@@ -1646,9 +1797,7 @@
                 output = document.getElementById('previewFrame').innerHTML;
             }
             
-            // Pretty print the HTML
             output = formatHTML(output);
-            
             document.getElementById('outputTextarea').value = output;
         }
 
@@ -1657,7 +1806,6 @@
             let indent = 0;
             const tab = '    ';
             
-            // Simple HTML formatter
             html = html.replace(/>\s*</g, '>\n<');
             const lines = html.split('\n');
             
@@ -1665,17 +1813,13 @@
                 line = line.trim();
                 if (!line) continue;
                 
-                // Decrease indent for closing tags
                 if (line.startsWith('</')) {
                     indent = Math.max(0, indent - 1);
                 }
                 
                 formatted += tab.repeat(indent) + line + '\n';
                 
-                // Increase indent for opening tags (not self-closing)
-                if (line.startsWith('<') && !line.startsWith('</') && 
-                    !line.endsWith('/>') && !line.includes('</')) {
-                    // Check if it's not a void element
+                if (line.startsWith('<') && !line.startsWith('</') && !line.endsWith('/>') && !line.includes('</')) {
                     const voidElements = ['br', 'hr', 'img', 'input', 'meta', 'link'];
                     const tagMatch = line.match(/<(\w+)/);
                     if (tagMatch && !voidElements.includes(tagMatch[1].toLowerCase())) {
@@ -1687,13 +1831,12 @@
             return formatted.trim();
         }
 
-        async function copyOutput() {
+        async function copyOutput(event) {
             const output = document.getElementById('outputTextarea').value;
             
             try {
                 await navigator.clipboard.writeText(output);
                 
-                // Visual feedback
                 const btn = event.target;
                 const originalText = btn.textContent;
                 btn.textContent = 'Copied!';
@@ -1710,94 +1853,252 @@
                 alert('Failed to copy to clipboard.');
             }
         }
+		// ============================================
+// PILL MANAGEMENT
+// ============================================
 
-        // ============================================
-        // PRESETS
-        // ============================================
+function addPill(text = '', bgColor = '#000000', textColor = '#f8f8f2', borderColor = '#4b5563') {
+    state.pills.push({
+        text: text || 'New Pill',
+        bgColor: bgColor,
+        textColor: textColor,
+        borderColor: borderColor
+    });
+    renderPills();
+    updatePreview();
+}
 
-        function loadPreset() {
-            const select = document.getElementById('presetSelect');
-            const presetName = select.value;
-            
-            if (!presetName || !presets[presetName]) return;
-            
-            const preset = presets[presetName];
-            
-            for (const [className, styles] of Object.entries(preset)) {
-                state.styles[className] = { ...styles };
-                
-                // Also set odd/even variants
-                if (styleDefinitions[className]?.isOddEven) {
-                    state.styles[className + '_odd'] = { ...styles };
-                    state.styles[className + '_even'] = { ...styles };
-                }
-            }
-            
-            generateStyleEditors();
-            updatePreview();
-            
-            select.value = '';
-        }
+function removePill(index) {
+    state.pills.splice(index, 1);
+    renderPills();
+    updatePreview();
+}
 
-        function downloadPreset() {
-            const preset = {};
-            
-            for (const className of Object.keys(styleDefinitions)) {
-                preset[className] = { ...state.styles[className] };
-                
-                if (styleDefinitions[className].isOddEven) {
-                    preset[className + '_odd'] = { ...state.styles[className + '_odd'] };
-                    preset[className + '_even'] = { ...state.styles[className + '_even'] };
-                }
-            }
-            
-            const blob = new Blob([JSON.stringify(preset, null, 2)], { type: 'application/json' });
-            const url = URL.createObjectURL(blob);
-            
-            const a = document.createElement('a');
-            a.href = url;
-            a.download = 'text-formatter-preset.json';
-            a.click();
-            
-            URL.revokeObjectURL(url);
-        }
+function updatePill(index, field, value) {
+    if (state.pills[index]) {
+        state.pills[index][field] = value;
+        renderPills();
+        updatePreview();
+    }
+}
 
-        function uploadPreset(event) {
-            const file = event.target.files[0];
-            if (!file) return;
+function renderPills() {
+    const container = document.getElementById('pillsContainer');
+    
+    if (state.pills.length === 0) {
+        container.innerHTML = '<p style="font-size: 0.8rem; color: #666;">No pills added yet. Click "+ Add Pill" to create one.</p>';
+        return;
+    }
+    
+    container.innerHTML = state.pills.map((pill, index) => `
+        <div class="pill-editor">
+            <input type="text" value="${pill.text}" placeholder="Pill text..." 
+                onchange="updatePill(${index}, 'text', this.value)">
             
-            const reader = new FileReader();
-            reader.onload = function(e) {
-                try {
-                    const preset = JSON.parse(e.target.result);
-                    
-                    for (const [className, styles] of Object.entries(preset)) {
-                        state.styles[className] = { ...styles };
-                    }
-                    
-                    generateStyleEditors();
-                    updatePreview();
-                } catch (err) {
-                    console.error('Failed to parse preset:', err);
-                    alert('Invalid preset file.');
-                }
-            };
-            reader.readAsText(file);
+            <div class="pill-editor-colors">
+                <label>BG</label>
+                <input type="color" value="${pill.bgColor}" 
+                    onchange="updatePill(${index}, 'bgColor', this.value)" title="Background Color">
+            </div>
             
-            // Reset input
-            event.target.value = '';
-        }
+            <div class="pill-editor-colors">
+                <label>Text</label>
+                <input type="color" value="${pill.textColor}" 
+                    onchange="updatePill(${index}, 'textColor', this.value)" title="Text Color">
+            </div>
+            
+            <div class="pill-editor-colors">
+                <label>Border</label>
+                <input type="color" value="${pill.borderColor}" 
+                    onchange="updatePill(${index}, 'borderColor', this.value)" title="Border Color">
+            </div>
+            
+            <div class="pill-preview" style="background: ${pill.bgColor}; color: ${pill.textColor}; border: 1px solid ${pill.borderColor};">
+                ${pill.text}
+            </div>
+            
+            <button class="btn btn-danger btn-small" onclick="removePill(${index})" style="padding: 4px 8px;">×</button>
+        </div>
+    `).join('');
+}
 
+function generatePillsHTML() {
+    if (state.pills.length === 0) return '';
+    
+    return state.pills.map(pill => {
+        const style = `background: ${pill.bgColor}; color: ${pill.textColor}; border: 1px solid ${pill.borderColor}; border-radius: 16px; padding: 0.25rem 0.75rem; font-size: 0.8rem; display: inline-block; margin: 0 4px 4px 0;`;
+        return `<span style="${style}">${pill.text}</span>`;
+    }).join('\n            ');
+}
+// ============================================
+// GRADIENT & BORDER HELPERS
+// ============================================
+
+function parseGradientAngle(value) {
+    if (!value) return 90;
+    const match = value.match(/(\d+)deg/);
+    return match ? parseInt(match[1]) : 90;
+}
+
+function parseGradientStops(value) {
+    if (!value || !value.includes('gradient')) {
+        return [
+            { color: '#000000', position: 0 },
+            { color: '#ffffff', position: 100 }
+        ];
+    }
+    
+    const stops = [];
+    const regex = /(#[a-fA-F0-9]{6}|#[a-fA-F0-9]{3}|rgba?\([^)]+\))\s*(\d+)?%?/g;
+    let match;
+    let index = 0;
+    
+    while ((match = regex.exec(value)) !== null) {
+        stops.push({
+            color: match[1].startsWith('#') ? match[1] : '#000000',
+            position: match[2] ? parseInt(match[2]) : (index === 0 ? 0 : 100)
+        });
+        index++;
+    }
+    
+    if (stops.length < 2) {
+        return [
+            { color: '#000000', position: 0 },
+            { color: '#ffffff', position: 100 }
+        ];
+    }
+    
+    return stops;
+}
+
+function generateGradientStops(elementKey, prop, value) {
+    const stops = parseGradientStops(value);
+    
+    return stops.map((stop, index) => `
+        <div class="gradient-stop">
+            <input type="color" value="${stop.color}" onchange="updateGradient('${elementKey}', '${prop}')">
+            <input type="number" value="${stop.position}" min="0" max="100" onchange="updateGradient('${elementKey}', '${prop}')">
+            <span>%</span>
+            ${stops.length > 2 ? `<button class="btn btn-danger btn-small" style="padding: 2px 6px;" onclick="removeGradientStop('${elementKey}', '${prop}', ${index})">×</button>` : ''}
+        </div>
+    `).join('');
+}
+
+function toggleBackgroundType(elementKey, prop, type, container) {
+    const solidEditor = container.querySelector('.solid-color-editor');
+    const gradientEditor = container.querySelector('.gradient-editor');
+    
+    if (type === 'solid') {
+        solidEditor.style.display = '';
+        gradientEditor.style.display = 'none';
+        updateTemplateStyle(elementKey, prop, '#000000');
+    } else {
+        solidEditor.style.display = 'none';
+        gradientEditor.style.display = '';
+        updateGradient(elementKey, prop);
+    }
+}
+
+function updateGradient(elementKey, prop) {
+    const editor = document.querySelector(`.gradient-editor[data-element="${elementKey}"][data-prop="${prop}"]`);
+    if (!editor) return;
+    
+    const type = editor.querySelector('.gradient-type').value;
+    const angle = editor.querySelector('.gradient-angle')?.value || 90;
+    const stopElements = editor.querySelectorAll('.gradient-stop');
+    
+    const stops = [];
+    stopElements.forEach(stopEl => {
+        const color = stopEl.querySelector('input[type="color"]').value;
+        const position = stopEl.querySelector('input[type="number"]').value;
+        stops.push(`${color} ${position}%`);
+    });
+    
+    let gradientValue;
+    if (type === 'linear') {
+        gradientValue = `linear-gradient(${angle}deg, ${stops.join(', ')})`;
+        editor.querySelector('.gradient-direction').style.display = '';
+    } else {
+        gradientValue = `radial-gradient(circle, ${stops.join(', ')})`;
+        editor.querySelector('.gradient-direction').style.display = 'none';
+    }
+    
+    // Update preview
+    editor.querySelector('.gradient-preview').style.background = gradientValue;
+    
+    // Update state
+    updateTemplateStyle(elementKey, prop, gradientValue);
+}
+
+function addGradientStop(elementKey, prop) {
+    const currentValue = state.templateStyles[elementKey]?.[prop] || '';
+    const stops = parseGradientStops(currentValue);
+    
+    // Add new stop in the middle
+    const newPosition = stops.length > 0 ? Math.round((stops[stops.length - 1].position + stops[0].position) / 2) : 50;
+    stops.push({ color: '#888888', position: newPosition });
+    stops.sort((a, b) => a.position - b.position);
+    
+    // Rebuild gradient
+    const editor = document.querySelector(`.gradient-editor[data-element="${elementKey}"][data-prop="${prop}"]`);
+    const type = editor.querySelector('.gradient-type').value;
+    const angle = editor.querySelector('.gradient-angle')?.value || 90;
+    
+    const stopsStr = stops.map(s => `${s.color} ${s.position}%`).join(', ');
+    const gradientValue = type === 'linear' 
+        ? `linear-gradient(${angle}deg, ${stopsStr})`
+        : `radial-gradient(circle, ${stopsStr})`;
+    
+    updateTemplateStyle(elementKey, prop, gradientValue);
+    generateStyleEditors(); // Rebuild to show new stop
+}
+
+function removeGradientStop(elementKey, prop, index) {
+    const currentValue = state.templateStyles[elementKey]?.[prop] || '';
+    const stops = parseGradientStops(currentValue);
+    
+    if (stops.length <= 2) return; // Minimum 2 stops
+    
+    stops.splice(index, 1);
+    
+    const editor = document.querySelector(`.gradient-editor[data-element="${elementKey}"][data-prop="${prop}"]`);
+    const type = editor.querySelector('.gradient-type').value;
+    const angle = editor.querySelector('.gradient-angle')?.value || 90;
+    
+    const stopsStr = stops.map(s => `${s.color} ${s.position}%`).join(', ');
+    const gradientValue = type === 'linear' 
+        ? `linear-gradient(${angle}deg, ${stopsStr})`
+        : `radial-gradient(circle, ${stopsStr})`;
+    
+    updateTemplateStyle(elementKey, prop, gradientValue);
+    generateStyleEditors();
+}
+
+function updateBorderStyle(elementKey, prop, container) {
+    const width = container.querySelector('input[type="number"]').value;
+    const style = container.querySelector('select').value;
+    const color = container.querySelector('input[type="color"]').value;
+    
+    const borderValue = style === 'none' ? 'none' : `${width}px ${style} ${color}`;
+    updateTemplateStyle(elementKey, prop, borderValue);
+}
         // ============================================
         // INITIALIZATION
         // ============================================
 
         function init() {
-            initializeStyles();
-            generateStyleEditors();
+            loadTemplate('vertical_dark');
+            updatePresetDropdown();
+			renderPills(); 
+            
+            document.getElementById('presetSelect').addEventListener('change', function() {
+                if (this.value) {
+                    loadTemplate(this.value);
+                    this.value = '';
+                }
+            });
         }
 
-        // Run on load
         init();
     </script>
 </body>
